@@ -11,12 +11,12 @@ namespace Version5.Models
         }
 
         public long FldJudgeId { get; set; }
-        public int? FldTournamentId { get; set; }
+        public long? FldTournamentId { get; set; }
         public string FldJudgeLetter { get; set; }
-        public long? FldLoginId { get; set; }
+        public string FldUsername { get; set; }
 
-        public TblLogin FldLogin { get; set; }
         public TblTournament FldTournament { get; set; }
+        public TblLogin FldUsernameNavigation { get; set; }
         public ICollection<TblAnswer> TblAnswer { get; set; }
     }
 }

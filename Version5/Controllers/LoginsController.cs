@@ -29,14 +29,14 @@ namespace Version5.Controllers
 
         // GET: api/Logins/5
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetTblLogin([FromRoute] long id)
+        public async Task<IActionResult> GetTblLogin([FromRoute] string id)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            var tblLogin = await _context.TblLogin.SingleOrDefaultAsync(m => m.FldLoginId == id);
+            var tblLogin = await _context.TblLogin.SingleOrDefaultAsync(m => m.FldUsername == id);
 
             if (tblLogin == null)
             {
@@ -48,14 +48,14 @@ namespace Version5.Controllers
 
         // PUT: api/Logins/5
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutTblLogin([FromRoute] long id, [FromBody] TblLogin tblLogin)
+        public async Task<IActionResult> PutTblLogin([FromRoute] string id, [FromBody] TblLogin tblLogin)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != tblLogin.FldLoginId)
+            if (id != tblLogin.FldUsername)
             {
                 return BadRequest();
             }
@@ -91,21 +91,35 @@ namespace Version5.Controllers
             }
 
             _context.TblLogin.Add(tblLogin);
-            await _context.SaveChangesAsync();
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateException)
+            {
+                if (TblLoginExists(tblLogin.FldUsername))
+                {
+                    return new StatusCodeResult(StatusCodes.Status409Conflict);
+                }
+                else
+                {
+                    throw;
+                }
+            }
 
-            return CreatedAtAction("GetTblLogin", new { id = tblLogin.FldLoginId }, tblLogin);
+            return CreatedAtAction("GetTblLogin", new { id = tblLogin.FldUsername }, tblLogin);
         }
 
         // DELETE: api/Logins/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteTblLogin([FromRoute] long id)
+        public async Task<IActionResult> DeleteTblLogin([FromRoute] string id)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            var tblLogin = await _context.TblLogin.SingleOrDefaultAsync(m => m.FldLoginId == id);
+            var tblLogin = await _context.TblLogin.SingleOrDefaultAsync(m => m.FldUsername == id);
             if (tblLogin == null)
             {
                 return NotFound();
@@ -117,9 +131,9 @@ namespace Version5.Controllers
             return Ok(tblLogin);
         }
 
-        private bool TblLoginExists(long id)
+        private bool TblLoginExists(string id)
         {
-            return _context.TblLogin.Any(e => e.FldLoginId == id);
+            return _context.TblLogin.Any(e => e.FldUsername == id);
         }
     }
 }

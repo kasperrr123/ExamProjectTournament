@@ -11,7 +11,6 @@ namespace Version5.Models
             TblTeam = new HashSet<TblTeam>();
         }
 
-        public long FldLoginId { get; set; }
         public string FldUsername { get; set; }
         public string FldPassword { get; set; }
         public string FldRank { get; set; }

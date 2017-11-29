@@ -29,14 +29,14 @@ namespace Version5.Controllers
 
         // GET: api/Projects/5
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetTblProject([FromRoute] int id)
+        public async Task<IActionResult> GetTblProject([FromRoute] string id)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            var tblProject = await _context.TblProject.SingleOrDefaultAsync(m => m.FldProjectId == id);
+            var tblProject = await _context.TblProject.SingleOrDefaultAsync(m => m.FldProjectName == id);
 
             if (tblProject == null)
             {
@@ -48,14 +48,14 @@ namespace Version5.Controllers
 
         // PUT: api/Projects/5
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutTblProject([FromRoute] int id, [FromBody] TblProject tblProject)
+        public async Task<IActionResult> PutTblProject([FromRoute] string id, [FromBody] TblProject tblProject)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != tblProject.FldProjectId)
+            if (id != tblProject.FldProjectName)
             {
                 return BadRequest();
             }
@@ -97,7 +97,7 @@ namespace Version5.Controllers
             }
             catch (DbUpdateException)
             {
-                if (TblProjectExists(tblProject.FldProjectId))
+                if (TblProjectExists(tblProject.FldProjectName))
                 {
                     return new StatusCodeResult(StatusCodes.Status409Conflict);
                 }
@@ -107,19 +107,19 @@ namespace Version5.Controllers
                 }
             }
 
-            return CreatedAtAction("GetTblProject", new { id = tblProject.FldProjectId }, tblProject);
+            return CreatedAtAction("GetTblProject", new { id = tblProject.FldProjectName }, tblProject);
         }
 
         // DELETE: api/Projects/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteTblProject([FromRoute] int id)
+        public async Task<IActionResult> DeleteTblProject([FromRoute] string id)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            var tblProject = await _context.TblProject.SingleOrDefaultAsync(m => m.FldProjectId == id);
+            var tblProject = await _context.TblProject.SingleOrDefaultAsync(m => m.FldProjectName == id);
             if (tblProject == null)
             {
                 return NotFound();
@@ -131,9 +131,9 @@ namespace Version5.Controllers
             return Ok(tblProject);
         }
 
-        private bool TblProjectExists(long id)
+        private bool TblProjectExists(string id)
         {
-            return _context.TblProject.Any(e => e.FldProjectId == id);
+            return _context.TblProject.Any(e => e.FldProjectName == id);
         }
     }
 }

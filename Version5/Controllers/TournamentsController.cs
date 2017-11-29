@@ -131,7 +131,7 @@ namespace Version5.Controllers
             return Ok(tblTournament);
         }
 
-        private bool TblTournamentExists(int id)
+        private bool TblTournamentExists(long id)
         {
             return _context.TblTournament.Any(e => e.FldTournamentId == id);
         }
