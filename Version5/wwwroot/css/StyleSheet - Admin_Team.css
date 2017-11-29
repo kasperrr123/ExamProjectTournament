@@ -1,0 +1,17 @@
+﻿body {
+    background-color: lightgray;
+    font-family:Arial;
+}
+
+#TopRow {
+    background-color: lightblue;
+}
+
+#scheduleLabel{
+    font-size: 20px;
+}
+
+#centerLogOutBtn{
+    vertical-align:middle;
+}
+

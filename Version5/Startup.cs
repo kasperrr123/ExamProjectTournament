@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Version5.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace Version5
 {
@@ -13,6 +15,7 @@ namespace Version5
     {
         public Startup(IConfiguration configuration)
         {
+            
             Configuration = configuration;
         }
 
@@ -22,6 +25,10 @@ namespace Version5
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
+            
+            var connection = @" Server = (local); Database = db_examprojecttournament; Trusted_Connection = True;";
+            services.AddDbContext<db_examprojecttournamentContext>(options => options.UseSqlServer(connection));
+           
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
