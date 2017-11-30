@@ -11,7 +11,7 @@ namespace Version5.Models
         }
 
         public string FldProjectName { get; set; }
-        public long? FldTournamentId { get; set; }
+        public int? FldTournamentId { get; set; }
         public string FldData { get; set; }
 
         public TblTournament FldTournament { get; set; }

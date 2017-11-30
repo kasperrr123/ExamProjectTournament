@@ -29,7 +29,7 @@ namespace Version5.Controllers
 
         // GET: api/Tournaments/5
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetTblTournament([FromRoute] int id)
+        public async Task<IActionResult> GetTblTournament([FromRoute] long id)
         {
             if (!ModelState.IsValid)
             {
@@ -48,7 +48,7 @@ namespace Version5.Controllers
 
         // PUT: api/Tournaments/5
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutTblTournament([FromRoute] int id, [FromBody] TblTournament tblTournament)
+        public async Task<IActionResult> PutTblTournament([FromRoute] long id, [FromBody] TblTournament tblTournament)
         {
             if (!ModelState.IsValid)
             {
@@ -91,28 +91,14 @@ namespace Version5.Controllers
             }
 
             _context.TblTournament.Add(tblTournament);
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateException)
-            {
-                if (TblTournamentExists(tblTournament.FldTournamentId))
-                {
-                    return new StatusCodeResult(StatusCodes.Status409Conflict);
-                }
-                else
-                {
-                    throw;
-                }
-            }
+            await _context.SaveChangesAsync();
 
             return CreatedAtAction("GetTblTournament", new { id = tblTournament.FldTournamentId }, tblTournament);
         }
 
         // DELETE: api/Tournaments/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteTblTournament([FromRoute] int id)
+        public async Task<IActionResult> DeleteTblTournament([FromRoute] long id)
         {
             if (!ModelState.IsValid)
             {

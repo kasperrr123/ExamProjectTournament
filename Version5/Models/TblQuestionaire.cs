@@ -11,7 +11,7 @@ namespace Version5.Models
         }
 
         public long FldQuestionaireId { get; set; }
-        public long? FldTournamentId { get; set; }
+        public int? FldTournamentId { get; set; }
         public string FldFirstQuestion { get; set; }
         public string FldSecondQuestion { get; set; }
         public string FldThirdQuestion { get; set; }

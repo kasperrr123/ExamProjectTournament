@@ -12,7 +12,7 @@ namespace Version5.Models
             TblQuestionaire = new HashSet<TblQuestionaire>();
         }
 
-        public long FldTournamentId { get; set; }
+        public int FldTournamentId { get; set; }
         public string FldTournamentName { get; set; }
         public int? FldYear { get; set; }
         public DateTime? FldStartDate { get; set; }

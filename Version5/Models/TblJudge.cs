@@ -11,7 +11,7 @@ namespace Version5.Models
         }
 
         public long FldJudgeId { get; set; }
-        public long? FldTournamentId { get; set; }
+        public int? FldTournamentId { get; set; }
         public string FldJudgeLetter { get; set; }
         public string FldUsername { get; set; }
 

@@ -14,7 +14,7 @@ namespace Version5.Models
         public virtual DbSet<TblTeam> TblTeam { get; set; }
         public virtual DbSet<TblTournament> TblTournament { get; set; }
 
-        public db_examprojecttournamentContext(DbContextOptions<db_examprojecttournamentContext> options) : base(options)
+        public db_examprojecttournamentContext(DbContextOptions<db_examprojecttournamentContext> options):base(options)
         {
 
         }
@@ -59,7 +59,7 @@ namespace Version5.Models
                 entity.ToTable("tblJudge");
 
                 entity.HasIndex(e => e.FldJudgeLetter)
-                    .HasName("UQ__tblJudge__B0CFFB729537CDDF")
+                    .HasName("UQ__tblJudge__B0CFFB72AD944508")
                     .IsUnique();
 
                 entity.Property(e => e.FldJudgeId).HasColumnName("fldJudgeID");
@@ -174,7 +174,7 @@ namespace Version5.Models
                 entity.ToTable("tblTeam");
 
                 entity.HasIndex(e => e.FldTeamName)
-                    .HasName("UQ__tblTeam__444E4FEAC2ECFC02")
+                    .HasName("UQ__tblTeam__444E4FEADF292A33")
                     .IsUnique();
 
                 entity.Property(e => e.FldTeamId).HasColumnName("fldTeamID");
