@@ -2,19 +2,19 @@
 
 $(document).ready(function getInformation() {
     $.ajax({
-        url: "http://localhost:55655/api/Tournaments", success: function (result) {
+        url: "http://kjdcyoungenterprice.azurewebsites.net/api/Tournaments", success: function (result) {
             var address = result[result.length - 1].fldAddress;
             $("#placeinformation").html(address)
         }
     });
     $.ajax({
-        url: "http://localhost:55655/api/Tournaments", success: function (result) {
+        url: "http://kjdcyoungenterprice.azurewebsites.net/api/Tournaments", success: function (result) {
             var endTime = result[result.length - 1].fldEndDate;
             $("#endtimeinformation").html(formatDateTime(endTime))
         }
     });
     $.ajax({
-        url: "http://localhost:55655/api/Tournaments", success: function (result) {
+        url: "http://kjdcyoungenterprice.azurewebsites.net/api/Tournaments", success: function (result) {
             var startTime = result[result.length - 1].fldStartDate;
             $("#starttimeinformation").html(formatDateTime(startTime));
         }
@@ -27,7 +27,7 @@ $(document).ready(function login() {
     $("#loginbutton").click(function () {
 
         $.ajax({
-            url: "http://localhost:55655/api/logins",
+            url: "http://kjdcyoungenterprice.azurewebsites.net/api/logins",
             type: "GET",
             contentType: "application/json",
             dataType: "json"
