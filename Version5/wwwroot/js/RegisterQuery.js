@@ -26,7 +26,8 @@
         function createLogin() {
             var LoginData = {
                 fldUsername: $('#email').val(),
-                fldPassword: $('#password').val()
+                fldPassword: $('#password').val(),
+                fldRank: 301
             };
             $.ajax({
                 url: 'http://localhost:55655/api/logins',
@@ -105,7 +106,7 @@
                 TournamentID = data[data.length - 1].fldTournamentId;
             }).then(function () {
                 createProject();
-            });
+            }); 
         }
     });
 });

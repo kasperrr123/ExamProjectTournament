@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -26,7 +22,7 @@ namespace Version5
         {
             services.AddMvc();
             
-            var connection = @" Server = (local); Database = db_examprojecttournament; Trusted_Connection = True;";
+            var connection = "Server = (local) ; Database = db_examprojecttournament; Trusted_Connection = True; ";
             services.AddDbContext<db_examprojecttournamentContext>(options => options.UseSqlServer(connection));
            
         }

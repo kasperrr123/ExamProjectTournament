@@ -5,7 +5,8 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="js/JavaQuery.js"></script>
+    <script type="text/javascript" src="js/RegisterQuery.js"></script>
+    <script type="text/javascript" src="js/LoginValidation.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/RegisterStyleSheet2.0.css" />
 
@@ -23,14 +24,14 @@
             </div>
             <div class="collapse navbar-collapse" id="myNavbar">
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="register - Copy.html"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
                     <li class="dropdown ">
                         <a href="http://www.jquery2dotnet.com" class="dropdown-toggle" data-toggle="dropdown">Login <b class="caret"></b></a>
                         <ul class="dropdown-menu" style="padding: 15px;min-width: 250px;">
                             <li class="m-md-3">
-                                <input class="text-center mb-3" type="email" placeholder="Email" />
-                                <input class="text-center mb-3" type="password" placeholder="Password" />
+                                <input class="text-center mb-3" id="Loginusername" type="email" placeholder="Email" />
+                                <input class="text-center mb-3" id="Loginpassword" type="password" placeholder="Password" />
                                 <input type="button" id="loginbutton" value="Login" class="btn col-12" />
+                               
                             </li>
                         </ul>
                     </li>
@@ -52,7 +53,7 @@
                     </div>
                     <div class="form-group">
                         <label>Password</label>
-                        <input type="password" id="password" class="form-control" placeholder="Password">   
+                        <input type="password" id="password" class="form-control" placeholder="Password">
                     </div>
 
                     <div class="form-group">
@@ -79,9 +80,9 @@
                     </div>
                     <div class="form-group">
                         <label class="form-control-label">Upload project</label>
-                        <input type="file"class="btn btn-info" value="Input Button" id="projectfile" name="files" accept="application/pdf" min="1" max="1">
+                        <input type="file" class="btn btn-info" value="Input Button" id="projectfile" name="files" accept="application/pdf" min="1" max="1">
                     </div>
-                    <button type="submit" class="btn btn-info" value="check" id="CreateLogin">
+                    <button type="button" class="btn btn-info" value="check" id="CreateLogin">
                         Register
                     </button>
                 </form>

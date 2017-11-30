@@ -5,7 +5,8 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Version5.Models;
-
+using System.Text;
+using System;
 
 namespace Version5.Controllers
 {
@@ -15,36 +16,42 @@ namespace Version5.Controllers
     {
         private readonly db_examprojecttournamentContext _context;
 
-
-
-        [HttpPost]
-        public async Task<IActionResult> PostTblLogin([FromBody] TblLogin tblLogin)
+        public ValidateLoginController(db_examprojecttournamentContext context)
         {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
-            _context.TblLogin.Add(tblLogin);
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateException)
-            {
-                if (TblLoginExists(tblLogin.FldUsername))
-                {
-                    return new StatusCodeResult(StatusCodes.Status409Conflict);
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return CreatedAtAction("GetTblLogin", new { id = tblLogin.FldUsername }, tblLogin);
+            _context = context;
         }
 
+        [HttpPost]
+        public object PostTblLogin([FromBody] TblLogin tblLogin)
+        {
+
+            if (!ModelState.IsValid)
+            {
+                return new { Status = 300, msg = "Error in db" };
+            }
+
+            tblLogin.FldPassword = Encryption(tblLogin.FldPassword, 4);
+
+            foreach (var login in _context.TblLogin)
+            {
+                if (login.FldUsername == tblLogin.FldUsername)
+                {
+
+                    if (login.FldPassword == tblLogin.FldPassword)
+                    {
+                        return new { Status = 100, Rank = login.FldRank };
+                    }
+                    else
+                    {
+                        return new { Status = 200, msg = "Password isn't correct" };
+                    }
+                }
+
+            }
+
+            return new { Status = 200, msg = "User doesn't exist" };
+
+        }
 
 
 
@@ -53,11 +60,31 @@ namespace Version5.Controllers
             return _context.TblLogin.Any(e => e.FldUsername == id);
         }
 
+        private string Encryption(string text, int key)
+        {
+            byte[] asciiBytes = Encoding.ASCII.GetBytes(text);
+            List<int> asciiValuesWithKey = new List<int>();
+            foreach (var item in asciiBytes)
+            {
+                string value = item.ToString();
+                int valueWithKey = int.Parse(value) + key;
+                asciiValuesWithKey.Add(valueWithKey);
+            }
+
+            string encryptedMessage = "";
+            foreach (var item in asciiValuesWithKey)
+            {
+                encryptedMessage += (Convert.ToChar(item));
+            }
+
+            return encryptedMessage;
+        }
+
     }
 
-  
 
-   
+
+
 
 
 }
