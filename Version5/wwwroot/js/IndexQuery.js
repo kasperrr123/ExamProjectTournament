@@ -30,14 +30,19 @@ $(document).ready(function login() {
             url: "http://localhost:55655/api/logins",
             type: "GET",
             contentType: "application/json",
-            dataType: "json",
-            success: function () {
-                alert("Got Tournament ID");
-            }
+            dataType: "json"
         }).then(function (data) {
-            alert("TournamentID = " + data[data.length - 1].fldTournamentId);
-            var tournamentID = data[data.length - 1].fldTournamentId;
-            alert(tournamentID);
+            var ifvalid = false;
+            for (var i = 0; i < data.length; i++) {
+                if ($("#username").val() == data[i].fldUsername && $("#password").val() == data[i].fldPassword) {
+                    alert(data[i].fldRank);
+                    ifvalid = true;
+                }
+            }
+            if (!ifvalid) {
+                alert("Email or password is incorrect. try again.")
+            }
+
         })
 
 
