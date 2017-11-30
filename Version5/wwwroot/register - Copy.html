@@ -1,0 +1,98 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <script src="js/bootstrap.bundle.js"></script>
+    <script src="js/bootstrap.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/JavaQuery.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/RegisterStyleSheet2.0.css" />
+
+</head>
+<body>
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="Index.html">Young Enterprice</a>
+            </div>
+            <div class="collapse navbar-collapse" id="myNavbar">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="register - Copy.html"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+                    <li class="dropdown ">
+                        <a href="http://www.jquery2dotnet.com" class="dropdown-toggle" data-toggle="dropdown">Login <b class="caret"></b></a>
+                        <ul class="dropdown-menu" style="padding: 15px;min-width: 250px;">
+                            <li class="m-md-3">
+                                <input class="text-center mb-3" type="email" placeholder="Email" />
+                                <input class="text-center mb-3" type="password" placeholder="Password" />
+                                <input type="button" id="loginbutton" value="Login" class="btn col-12" />
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+    </nav>
+
+
+    <div class="container-fluid ml-auto ml-5">
+        <div class="row align-self-stretch">
+            <div class="">
+
+                <form class="container-fluid">
+                    <div class="form-group mt-2">
+                        <label>Email address</label>
+                        <input type="email" id="email" class="form-control" placeholder="Enter email">
+                    </div>
+                    <div class="form-group">
+                        <label>Password</label>
+                        <input type="password" id="password" class="form-control" placeholder="Password">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-control-label">Team Leader</label>
+                        <input id="TeamLeader" type="text" class="form-control" placeholder="Enter Team Leader Name">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-control-label">Team Name</label>
+                        <input id="TeamName" type="text" class="form-control" placeholder="Enter Team Name">
+                    </div>
+                    <div class="form-group">
+
+                        <label class="form-control-label">Track</label><br />
+                        <select id="Category" class="">
+                            <option>Business & Service</option>
+                            <option>Science & Technology</option>
+                            <option>Society & Globalization</option>
+                            <option>Trade & Skills</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-control-label">Project name</label>
+                        <input type="text" id="projectname" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-control-label">Upload project</label>
+                        <input type="file" id="projectfile" class="form-control" accept="pdf/*">
+                    </div>
+                    <button type="button" id="CreateLogin" class="btn btn-dark col-4 c">
+                        Register
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+
+</body>
+</html>

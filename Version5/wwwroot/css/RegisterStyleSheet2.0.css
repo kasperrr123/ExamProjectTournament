@@ -1,0 +1,16 @@
+﻿.container-fluid {
+    margin-left:15%;
+    margin-right:15%;
+}
+#CreateLogin {
+    width:100%;
+}
+.text-center {
+    margin: 2%;
+    width: 100%;
+}
+#loginbutton {
+    margin-left: 2%;
+    width: 100%;
+}
+

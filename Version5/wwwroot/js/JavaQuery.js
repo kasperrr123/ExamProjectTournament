@@ -26,7 +26,7 @@
         function createLogin() {
             var LoginData = {
                 fldUsername: $('#email').val(),
-                fldPassword: $('#password').val(),
+                fldPassword: $('#password').val()
             };
             $.ajax({
                 url: 'http://localhost:55655/api/logins',
@@ -35,7 +35,7 @@
                 data: JSON.stringify(LoginData),
                 success: function () {
                     alert("Login create Success");
-                    createTeam()
+                    createTeam();
                 }, error: function () {
                     alert("Login create failure");
                 }
@@ -48,13 +48,13 @@
                 fldTeamName: $('#TeamName').val(),
                 fldTopic: $('#Category').val(),
                 fldMembers: 4,
-                fldLeaderName: $('#TeamLeader').val(),
-            }
+                fldLeaderName: $('#TeamLeader').val()
+            };
             $.ajax({
                 url: 'http://localhost:55655/api/teams',
                 method: 'POST',
                 contentType: "application/json",
-                data:JSON.stringify(TeamData),
+                data: JSON.stringify(TeamData),
                 success: function () {
                     alert("Team has been registered. Please log in to continue");
                     window.location.href = "index.html";
@@ -63,7 +63,7 @@
                 error: function () {
                     alert("Team create Failed");
                 }
-            })
+            });
         }
 
 
@@ -72,13 +72,13 @@
             url: "http://localhost:55655/api/tournaments",
             type: "GET",
             contentType: "application/json",
-            dataType: "json",
+            dataType: "json"
         }).then(function (data) {
             alert("TournamentID = " + data[data.length - 1].fldTournamentId);
             TournamentID = data[data.length - 1].fldTournamentId;
         }).then(function () {
-            createProject()
+            createProject();
         });
 
-    })
-})
+    });
+});
