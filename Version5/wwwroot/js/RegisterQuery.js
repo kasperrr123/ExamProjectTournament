@@ -11,7 +11,7 @@
                 fldData: null
             };
             $.ajax({
-                url: 'http://localhost:55655/api/projects',
+                url: 'http://kjdcyoungenterprice.azurewebsites.net/api/projects',
                 method: 'POST',
                 contentType: "application/json",
                 data: JSON.stringify(ProjectData),
@@ -30,7 +30,7 @@
                 fldRank: 301
             };
             $.ajax({
-                url: 'http://localhost:55655/api/logins',
+                url: 'http://kjdcyoungenterprice.azurewebsites.net/api/logins',
                 method: 'POST',
                 contentType: "application/json",
                 data: JSON.stringify(LoginData),
@@ -52,7 +52,7 @@
                 fldLeaderName: $('#TeamLeader').val()
             };
             $.ajax({
-                url: 'http://localhost:55655/api/teams',
+                url: 'http://kjdcyoungenterprice.azurewebsites.net/api/teams',
                 method: 'POST',
                 contentType: "application/json",
                 data: JSON.stringify(TeamData),
@@ -97,7 +97,7 @@
         //Register Team
         if (isEmail($('#email').val())) {
             $.ajax({
-                url: "http://localhost:55655/api/tournaments",
+                url: "http://kjdcyoungenterprice.azurewebsites.net/api/tournaments",
                 type: "GET",
                 contentType: "application/json",
                 dataType: "json"
