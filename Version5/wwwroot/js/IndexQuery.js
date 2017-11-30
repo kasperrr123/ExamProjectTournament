@@ -4,13 +4,13 @@ $(document).ready(function getInformation() {
     $.ajax({
         url: "http://localhost:55655/api/Tournaments", success: function (result) {
             var address = result[result.length - 1].fldAddress;
-            $("#placeinformation").html(address)
+            $("#placeinformation").html(address);
         }
     });
     $.ajax({
         url: "http://localhost:55655/api/Tournaments", success: function (result) {
             var endTime = result[result.length - 1].fldEndDate;
-            $("#endtimeinformation").html(formatDateTime(endTime))
+            $("#endtimeinformation").html(formatDateTime(endTime));
         }
     });
     $.ajax({
@@ -20,6 +20,11 @@ $(document).ready(function getInformation() {
         }
     });
 
-
+    function formatDateTime(datetime) {
+        var datetimeWithOutT = datetime.replace("T", " ");
+        var parts = datetimeWithOutT.split(/[- :]/);
+        var wanted = parts[2] + '/' + parts[1] + '/' + parts[0] + ' ' + parts[3] + ':' + parts[4];
+        return wanted;
+    }
 });
 
