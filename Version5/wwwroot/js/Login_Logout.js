@@ -1,4 +1,5 @@
 ﻿$(document).ready(function login() {
+    var hostname = document.location.host;
     $("#loginbutton").click(function () {
         var loginObject = {
             fldUsername: $('#Loginusername').val(),
@@ -6,7 +7,7 @@
         };
         if (isEmail(loginObject.fldUsername) && loginObject.fldPassword != null) {
             $.ajax({
-                url: "http://localhost:55655/api/ValidateLogin",
+                url: 'http://' + hostname + '/api/ValidateLogin',
                 type: "POST",
                 contentType: "application/json",
                 dataType: "json",

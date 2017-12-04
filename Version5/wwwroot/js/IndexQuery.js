@@ -1,6 +1,6 @@
 ﻿
 $(document).ready(function getInformation() {
-
+    var hostname = document.location.host;
     // check if there is a cookie valid.
     if (isCookieValid()) {
         $("#logindropdownnavbar").get(0).hidden = true;
@@ -31,23 +31,23 @@ $(document).ready(function getInformation() {
     });
 
     $.ajax({
-        url: "http://localhost:55655/api/Tournaments", success: function (result) {
+        url: 'http://' + hostname + '/api/Tournaments', success: function (result) {
             var address = result[result.length - 1].fldAddress;
-            $("#placeinformation").html(address)
-        }
+        $("#placeinformation").html(address)
+}
     });
-    $.ajax({
-        url: "http://localhost:55655/api/Tournaments", success: function (result) {
-            var endTime = result[result.length - 1].fldEndDate;
-            $("#endtimeinformation").html(formatDateTime(endTime))
-        }
-    });
-    $.ajax({
-        url: "http://localhost:55655/api/Tournaments", success: function (result) {
-            var startTime = result[result.length - 1].fldStartDate;
-            $("#starttimeinformation").html(formatDateTime(startTime));
-        }
-    });
+$.ajax({
+    url: 'http://' + hostname +'/api/Tournaments', success: function (result) {
+        var endTime = result[result.length - 1].fldEndDate;
+        $("#endtimeinformation").html(formatDateTime(endTime))
+    }
+});
+$.ajax({
+    url: 'http://' + hostname +'/api/Tournaments', success: function (result) {
+        var startTime = result[result.length - 1].fldStartDate;
+        $("#starttimeinformation").html(formatDateTime(startTime));
+    }
+});
 
 
 
