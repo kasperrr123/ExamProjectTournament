@@ -5,8 +5,8 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="js/RegisterQuery.js"></script>
-    <script type="text/javascript" src="js/LoginValidation.js"></script>
+    <script type="text/javascript" src="js/RegisterQuery.js?n=1"></script>
+    <script type="text/javascript" src="js/LoginValidation.js?n=1"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/RegisterStyleSheet2.0.css" />
 
@@ -31,7 +31,7 @@
                                 <input class="text-center mb-3" id="Loginusername" type="email" placeholder="Email" />
                                 <input class="text-center mb-3" id="Loginpassword" type="password" placeholder="Password" />
                                 <input type="button" id="loginbutton" value="Login" class="btn col-12" />
-                               
+
                             </li>
                         </ul>
                     </li>
@@ -78,13 +78,18 @@
                         <label class="form-control-label">Project name</label>
                         <input type="text" id="projectname" class="form-control">
                     </div>
+
+                </form>
+                <form class="container-fluid" method="post" enctype="multipart/form-data" asp-controller="UploadFiles" asp-action="Index">
+
                     <div class="form-group">
                         <label class="form-control-label">Upload project</label>
-                        <input type="file" class="btn btn-info" value="Input Button" id="projectfile" name="files" accept="application/pdf" min="1" max="1">
+                        <input type="file" class="btn btn-info" value="Input Button" id="userfile" name="userfile" accept="application/pdf" min="1" max="1">
                     </div>
                     <button type="button" class="btn btn-info" value="check" id="CreateLogin">
                         Register
                     </button>
+                   
                 </form>
             </div>
         </div>
