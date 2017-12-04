@@ -2,8 +2,8 @@
     $("#loginbutton").click(function () {
         var loginObject = {
             fldUsername: $('#Loginusername').val(),
-            fldPassword: $('#Loginpassword').val(),
-        }
+            fldPassword: $('#Loginpassword').val()
+        };
         if (isEmail(loginObject.fldUsername) && loginObject.fldPassword != null) {
             $.ajax({
                 url: "http://localhost:55655/api/ValidateLogin",
@@ -36,15 +36,17 @@
                         break;
                     case 200:
                         alert(b.msg);
+                        break;
                     case 300:
                         alert(b.msg);
+                        break;
                     default:
                         alert("Unknown error");
                         break;
                 }
             });
         } else {
-            alert("You have write your username (email address) and your password to login")
+            alert("You have write your username (email address) and your password to login");
         }
     });
 
@@ -67,12 +69,7 @@ function createCookie(username, rank) {
     document.cookie = username + "=" + rank + ";" + "expires=" + time;
 }
 
-function formatDateTime(datetime) {
-    var datetimeWithOutT = datetime.replace("T", " ");
-    var parts = datetimeWithOutT.split(/[- :]/);
-    var wanted = parts[2] + '/' + parts[1] + '/' + parts[0] + ' ' + parts[3] + ':' + parts[4];
-    return wanted;
-}
+
 
 function isEmail(emailV) {
     if (emailV != null && emailV != undefined) {
