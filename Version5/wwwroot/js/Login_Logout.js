@@ -17,6 +17,22 @@
                 switch (b.status) {
                     case 100:
                         alert("You've been logged in: " + b.rank);
+                        switch (b.rank) {
+                            case "301":
+                                createCookie(loginObject.fldUsername, "301");
+                                document.location.pathname = "teamPage.html";
+                                break;
+                            case "355":
+                                createCookie(loginObject.fldUsername, "355");
+                                document.location.pathname = "judgePage.html";
+                                break;
+                            case "395":
+                                createCookie(loginObject.fldUsername, "395");
+                                document.location.pathname = "adminPage.html";
+                                break;
+                            default:
+                                break;
+                        }
                         break;
                     case 200:
                         alert(b.msg);
@@ -33,10 +49,25 @@
             alert("You have write your username (email address) and your password to login");
         }
     });
+
+
+
+    $("#logoutbutton").click(function () {
+        var cookie = document.cookie;
+        var username = cookie.split("=")[0];
+        document.cookie = username + "=; expires=Thu, 01 Jan 1970 00:00:01 GMT;";
+        document.location.pathname = "index.html";
+    });
+
+
 });
 
 
-
+function createCookie(username, rank) {
+    var expirationDay = "expires=" + new Date(new Date().getTime() + 60 * 60 * 24 * 1000);
+    var time = expirationDay.split("+")[0];
+    document.cookie = username + "=" + rank + ";" + "expires=" + time;
+}
 
 
 
