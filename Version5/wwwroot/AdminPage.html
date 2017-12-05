@@ -8,8 +8,25 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.11.1/bootstrap-table.min.css">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.11.1/bootstrap-table.min.js"></script>
+
+    <!-- Latest compiled and minified Locales -->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.11.1/locale/bootstrap-table-zh-CN.min.js"></script>
+
+
+
+
+    <script src="js/AdminScript.js"></script>
+
 </head>
 <body>
+
     <nav class="navbar navbar-inverse">
         <div class="container-fluid">
             <div class="navbar-header">
@@ -33,41 +50,50 @@
     <div class="container-fluid">
         <div class="flex-md-row">
             <div>
-                <table class=" table table-responsive table-striped">
-                    <thead>
+                <div class="col-md-2">
+                    <table class="table table-responsive table-striped">
+                        <thead>
+                            <tr>
+                                <th>Judge team</th>
+                            </tr>
+                        </thead>
                         <tr>
-                            <th>Judge team</th>
-                            <th>A</th>
-                            <th>B</th>
-                            <th>C</th>
-                            <th>D</th>
-                            <th>E</th>
-                            <th>F</th>
-                            <th>G</th>
-                            <th>H</th>
-                            <th>I</th>
-                            <th>J</th>
+                            <td class="cell" contenteditable="true">9.20</td>
                         </tr>
-                    </thead>
-                    <tr>
-                        <td>9.40</td>
-                        <td>1 - Beer 4 You</td>
-                        <td>8 - Just Zipper</td>
-                        <td>15 - Needs</td>
-                        <td>22 - Simpel and Smart</td>
-                        <td>29 - Your Sole Mate </td>
-                        <td>42 - EasyBottle </td>
-                        <td>48 - StudyDrive </td>
-                        <td>54 - Ducha Doble </td>
-                        <td>60 - Smart fit</td>
-                        <td>36 - SESTO</td>
-                    </tr>
-                    <tr>
-                        <td>9.47</td>
-                        <td>2 - DURA</td>
-                        <td>9 - Keykeeper</td>
-                    </tr>
-                </table>
+                        <tr>
+                            <td contenteditable="true">9.47</td>
+                        </tr>
+                        <tr>
+                            <td contenteditable="true">9.47</td>
+                        </tr>
+                        <tr>
+                            <td contenteditable="true">9.47</td>
+                        </tr>
+                        <tr>
+                            <td contenteditable="true">9.47</td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="col-md-10">
+                    <table id="table">
+                        <thead>
+                            <tr>
+                                <th data-field="fldA">A</th>
+                                <th data-field="fldB">B</th>
+                                <th data-field="fldC">C</th>
+                                <th data-field="fldD">D</th>
+                                <th data-field="fldE">E</th>
+                                <th data-field="fldF">F</th>
+                                <th data-field="fldG">G</th>
+                                <th data-field="fldH">H</th>
+                                <th data-field="fldI">I</th>
+                                <th data-field="fldJ">J</th>
+                                <th data-field="fldK">K</th>
+                                <th data-field="fldL">L</th>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
             </div>
         </div>
     </div>
@@ -77,10 +103,10 @@
             <h2>Management</h2>
         </div>
         <div class="col-md-4 mt-md-5">
-           <select class="dropdown-header">
-               <option>Teams</option>
-               <option>Admin</option>
-           </select>
+            <select class="dropdown-header">
+                <option>Teams</option>
+                <option>Judges</option>
+            </select>
         </div>
 
     </div>
