@@ -1,0 +1,40 @@
+﻿.navbar-nav {
+    margin-top: 7px;
+    vertical-align: central;
+}
+
+.navbar-header {
+    font-size: large;
+    margin-top: 0.75%;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+#loggedin {
+    margin-top: 0.75%;
+    margin-left: 32%;
+    color: white;
+}
+
+#logindropdown {
+    margin-top: 0.75%;
+}
+
+.navbar-toggle {
+    margin-top: 6%;
+}
+
+.text-center {
+    width: 90%;
+    color: black;
+    margin-bottom: 4px;
+    margin-left: 8px;
+}
+
+
+
+#loginbutton {
+    margin-top: 2%;
+    width: 90%;
+    margin-left: 6.2px;
+}

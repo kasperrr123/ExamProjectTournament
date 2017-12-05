@@ -1,0 +1,59 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/NavbarStyleSheet.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="js/Login_Logoutscript.js"></script>
+    <title></title>
+</head>
+<body>
+    <nav id="MainNavBar" class="navbar navbar-inverse">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="nav navbar-header" href="Index.html">Young Enterprice</a>
+        </div>
+        <div id="myNavbar" class="collapse navbar-collapse" >
+
+            <div id="loggedin" class="nav navbar-header">Logged in as Team</div>
+            <div class="navbar-nav navbar-header navbar-right">
+                <ul class="">
+
+                    <content id="signupnavbar"><a href="register.html"><span class="glyphicon glyphicon-user"></span> Sign Up</a></content>
+                    <content id="mypagenavbar" hidden="hidden"><a href="#"><span class="glyphicon glyphicon-home"></span> My page</a></content>
+
+
+                </ul>
+            </div>
+            <div class="navbar-nav navbar-header navbar-right">
+                <ul>
+                    <content class="dropdown">
+                        <a id="logindropdown" class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a>
+                        <ul class="dropdown-menu"style="padding: 15px;min-width: 250px;">
+                            <li class="m-md-3">
+                                <input class="text-center mb-3" id="Loginusername" type="email" placeholder="Email" />
+                                <input class="text-center mb-3" id="Loginpassword" type="password" placeholder="Password" />
+                                <input type="button" id="loginbutton" value="Login" class="btn col-12" />
+                            </li>
+                        </ul>
+                    </content>
+
+                    <li class="active" id="logoutbutton" hidden="hidden"><a href="#">Log out</a></li>
+                </ul>
+            </div>
+           
+          
+        </div>
+    </nav>
+
+</body>
+</html>
