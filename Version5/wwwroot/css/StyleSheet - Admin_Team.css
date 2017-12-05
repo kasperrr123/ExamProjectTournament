@@ -1,17 +1,22 @@
 ﻿body {
     background-color: lightgray;
-    font-family:Arial;
+    font-family: Arial;
 }
 
 #TopRow {
     background-color: lightblue;
 }
 
-#scheduleLabel{
+#scheduleLabel {
     font-size: 20px;
 }
 
-#centerLogOutBtn{
-    vertical-align:middle;
+#centerLogOutBtn {
+    vertical-align: middle;
 }
 
+.cell{
+    width: 12px;
+    height: 50px;
+    margin:50px;
+}
