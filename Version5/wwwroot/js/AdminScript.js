@@ -10,21 +10,32 @@
             type: "GET",
             contentType: "application/json",
             dataType: "json",
-        }).then(function (fromServer) {           
+        }).then(function (fromServer) {
             $('#table').bootstrapTable({
                 data: fromServer
             });
         });
-        
+
     };
 
     var myWindow;
-    $("#openQuestionaires").click(function () {
-        myWindow = window.open('http://youtube.com', '_blank', 'height=300, width=300');
+    $("#openEditQuestionnaire").click(function () {
+        var size;
+        if (screen.height <= 768 && screen.width <= 1366) {
+            size = "height=" + (screen.height - 125) + "," + "width=" + (screen.width - 100);
+
+        } else {
+            size = "height=" + (screen.height - 250) + "," + "width=" + (screen.width - 850);
+
+        }
+
+        myWindow = window.open('http://' + hostname + '/EditQuestionnairePage.html', "_blank", size);
     });
 
-
 });
+
+
+
 
 
 
