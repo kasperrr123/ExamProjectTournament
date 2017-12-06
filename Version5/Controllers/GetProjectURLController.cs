@@ -19,6 +19,27 @@ namespace Version5.Controllers
         {
             _context = context;
         }
+        public List<Object> GetTblTeam()
+        {
+            var collection = _context.TblTeam;
+            List<Object> collectionObj = new List<object>();
+
+            foreach (var item in collection)
+            {
+                var projectfilepath = _context.TblProject.Find(item.FldProjectName).FldProjectFilePath;
+                var teamNames = new
+                {
+                    fldTeamName = item.FldTeamName,
+                    FldProjectFilePath =projectfilepath
+                };
+                collectionObj.Add(teamNames);
+            }
+
+
+
+            return collectionObj;
+        }
+
         [HttpGet("{id}")]
         public async Task<IActionResult> GetTblTeam([FromRoute] string id)
         {
