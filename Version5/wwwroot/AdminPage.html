@@ -6,23 +6,11 @@
     <link rel="stylesheet" href="css/StyleSheet - Admin_Team.css" />
     <link rel="stylesheet" href="css/RegisterCss.css" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://rawgit.com/wenzhixin/bootstrap-table/master/src/bootstrap-table.css" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
-
-    <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.11.1/bootstrap-table.min.css">
-
-    <!-- Latest compiled and minified JavaScript -->
-    <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.11.1/bootstrap-table.min.js"></script>
-
-    <!-- Latest compiled and minified Locales -->
-    <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.11.1/locale/bootstrap-table-zh-CN.min.js"></script>
-
-
-
-
-    <script src="js/AdminScript.js"></script>
+    <script src="https://rawgit.com/wenzhixin/bootstrap-table/master/src/bootstrap-table.js"></script>
+    <script src="js/AdminScript.js?n=1"></script>
 
 </head>
 <body>
@@ -36,7 +24,6 @@
                 <li><a href="#">Create new tournament</a></li>
                 <li><a href="#">Manage tournaments</a></li>
                 <li class="active"><a href="#">Log out</a></li>
-
             </ul>
         </div>
     </nav>
@@ -50,53 +37,29 @@
     <div class="container-fluid">
         <div class="flex-md-row">
             <div>
-                <div class="col-md-2">
-                    <table class="table table-responsive table-striped">
-                        <thead>
-                            <tr>
-                                <th>Judge team</th>
-                            </tr>
-                        </thead>
+                <table class="table table-responsive table-striped" id="table">
+                    <thead>
                         <tr>
-                            <td class="cell" contenteditable="true">9.20</td>
+                            <th data-field="time"> Judge team</th>
+                            <th data-field="fldTeamName">A</th>
+                            <th data-field="judgeb">B</th>
+                            <th data-field="judgec">C</th>
+                            <th data-field="judged">D</th>
+                            <th data-field="judgee">E</th>
+                            <th data-field="judgef">F</th>
+                            <th data-field="judgeg">G</th>
+                            <th data-field="judgeh">H</th>
+                            <th data-field="judgei">I</th>
+                            <th data-field="judgej">J</th>
+                            <th data-field="judgek">K</th>
+                            <th data-field="judgel">L</th>
                         </tr>
-                        <tr>
-                            <td contenteditable="true">9.47</td>
-                        </tr>
-                        <tr>
-                            <td contenteditable="true">9.47</td>
-                        </tr>
-                        <tr>
-                            <td contenteditable="true">9.47</td>
-                        </tr>
-                        <tr>
-                            <td contenteditable="true">9.47</td>
-                        </tr>
-                    </table>
-                </div>
-                <div class="col-md-10">
-                    <table id="table">
-                        <thead>
-                            <tr>
-                                <th data-field="fldA">A</th>
-                                <th data-field="fldB">B</th>
-                                <th data-field="fldC">C</th>
-                                <th data-field="fldD">D</th>
-                                <th data-field="fldE">E</th>
-                                <th data-field="fldF">F</th>
-                                <th data-field="fldG">G</th>
-                                <th data-field="fldH">H</th>
-                                <th data-field="fldI">I</th>
-                                <th data-field="fldJ">J</th>
-                                <th data-field="fldK">K</th>
-                                <th data-field="fldL">L</th>
-                            </tr>
-                        </thead>
-                    </table>
-                </div>
+                    </thead>
+                </table>
             </div>
         </div>
     </div>
+
     <div class="flex-md-row-reverse">
 
         <div class="col-md-8">
