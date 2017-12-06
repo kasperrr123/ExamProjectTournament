@@ -2,29 +2,53 @@
 <html>
 <head>
     <meta charset="utf-8" />
-    <title>AdminPage</title>
-    <link rel="stylesheet" href="css/StyleSheet - Admin_Team.css" />
-    <link rel="stylesheet" href="css/RegisterCss.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://rawgit.com/wenzhixin/bootstrap-table/master/src/bootstrap-table.css" />
+    <link rel="stylesheet" href="css/NavbarStyleSheet.css" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="https://rawgit.com/wenzhixin/bootstrap-table/master/src/bootstrap-table.js"></script>
+    <script type="text/javascript" src="js/Login_Logoutscript.js?n=1"></script>
     <script src="js/AdminScript.js?n=1"></script>
+    <title>AdminPage</title>
 
 </head>
 <body>
+    <nav id="MainNavBar" class="navbar navbar-inverse">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="nav navbar-header" href="Index.html">Young Enterprice</a>
+        </div>
+        <div id="myNavbar" class="collapse navbar-collapse">
 
-    <nav class="navbar navbar-inverse">
-        <div class="container-fluid">
-            <div class="navbar-header">
-                <a class="navbar-brand" href="#">Administrator page</a>
+            <div id="loggedin"  class="nav navbar-header setLoggedInAs"></div>
+
+
+
+            <div class="navbar-nav navbar-header navbar-right">
+                <content class="">
+                    <content class="active hideElementWhenLoggedIn" id="logoutbutton"><a href="#">Log out</a></content>
+                </content>
             </div>
-            <ul class="nav">
-                <li><a href="#">Create new tournament</a></li>
-                <li><a href="#">Manage tournaments</a></li>
-                <li class="active"><a href="#">Log out</a></li>
-            </ul>
+            <div class="navbar-nav navbar-header navbar-right">
+                <ul>
+                    <content class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-calendar"></span> Tournament</a>
+                        <ul class="dropdown-menu" style="padding: 15px;min-width: 250px;">
+                            <li><a href="#">Create new tournament</a></li>
+                            <li><a href="#">Manage tournaments</a></li>
+                        </ul>
+                    </content>
+                    <content class="active" id="openQuestionaires"><a href="#"><span class="glyphicon glyphicon-home"></span> Questionaire</a></content>
+                </ul>
+            </div>
+
         </div>
     </nav>
 
@@ -42,8 +66,6 @@
                         <tr>
                             <th>Time</th>
                             <th data-field="fldTeamName">Teams</th>
-                            <th data-field="time"> Judge team</th>
-
                             <th data-field="judgeb">B</th>
                             <th data-field="judgec">C</th>
                             <th data-field="judged">D</th>
@@ -62,20 +84,24 @@
         </div>
     </div>
 
-    <div class="flex-md-row-reverse">
 
-        <div class="col-md-8">
+
+
+    <div class="flex-md-row-reverse">
+        <div class="container-fluid">
             <h2>Management</h2>
-        </div>
-        <div class="col-md-4 mt-md-5">
             <select class="dropdown-header">
                 <option>Teams</option>
                 <option>Judges</option>
             </select>
         </div>
-
     </div>
+
     <div class="container-fluid">
+
+
+
+
         <div class="flex-md-row-reverse">
             <div>
                 <table class=" table table-responsive table-striped">
@@ -100,6 +126,7 @@
             </div>
         </div>
     </div>
+
 
 
 </body>

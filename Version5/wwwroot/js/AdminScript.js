@@ -1,12 +1,7 @@
 ﻿$(document).ready(function () {
     var hostname = document.location.host;
-    //alert("Inside AdminScript");
 
     var collectionOfTeams = getTeams();
-
-
-
-
 
     function getTeams() {
         var collectionOfTeams = [];
@@ -15,18 +10,18 @@
             type: "GET",
             contentType: "application/json",
             dataType: "json",
-        }).then(function (fromServer) {
-            alert(fromServer);
-           
+        }).then(function (fromServer) {           
             $('#table').bootstrapTable({
                 data: fromServer
             });
         });
-
-
-
-
+        
     };
+
+    var myWindow;
+    $("#openQuestionaires").click(function () {
+        myWindow = window.open('http://youtube.com', '_blank', 'height=300, width=300');
+    });
 
 
 });

@@ -15,8 +15,12 @@
     vertical-align: middle;
 }
 
-.cell{
+.cell {
     width: 12px;
     height: 50px;
-    margin:50px;
+    margin: 50px;
+}
+
+#marginLeft {
+    margin: 10px;
 }
