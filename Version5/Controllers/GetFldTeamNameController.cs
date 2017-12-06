@@ -21,22 +21,23 @@ namespace Version5.Controllers
 
         // GET: api/Teams
         [HttpGet]
-        public List<> GetTblTeam()
+        public List<Object> GetTblTeam()
         {
             var collection = _context.TblTeam.Select(m => m.FldTeamName);
-            List<Object> collectionObj = null;
+            List<Object> collectionObj = new List<object>();
 
             foreach (var item in collection)
             {
-                collectionObj.Add(item);
+                var teamNames = new
+                {
+                    fldTeamName = item
+                };
+                collectionObj.Add(teamNames);
             }
-            var teamNames = new
-            {
-                fldTeamName = _context.TblTeam.Select(m => m.FldTeamName)
-            };
+           
 
 
-            return teamNames;
+            return collectionObj;
         }
 
 
