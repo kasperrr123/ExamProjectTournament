@@ -16,6 +16,11 @@
     color: white;
 }
 
+#logoutbutton{
+    margin-top: 0.75%;
+
+}
+
 #logindropdown {
     margin-top: 0.75%;
 }

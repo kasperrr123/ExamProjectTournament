@@ -29,14 +29,14 @@ namespace Version5.Controllers
 
         // GET: api/Teams/5
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetTblTeam([FromRoute] long id)
+        public async Task<IActionResult> GetTblTeam([FromRoute] string id)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            var tblTeam = await _context.TblTeam.SingleOrDefaultAsync(m => m.FldTeamId == id);
+            var tblTeam = await _context.TblTeam.SingleOrDefaultAsync(m => m.FldTeamName == id);
 
             if (tblTeam == null)
             {
@@ -48,14 +48,14 @@ namespace Version5.Controllers
 
         // PUT: api/Teams/5
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutTblTeam([FromRoute] long id, [FromBody] TblTeam tblTeam)
+        public async Task<IActionResult> PutTblTeam([FromRoute] string id, [FromBody] TblTeam tblTeam)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != tblTeam.FldTeamId)
+            if (id != tblTeam.FldTeamName)
             {
                 return BadRequest();
             }
@@ -91,21 +91,35 @@ namespace Version5.Controllers
             }
 
             _context.TblTeam.Add(tblTeam);
-            await _context.SaveChangesAsync();
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateException)
+            {
+                if (TblTeamExists(tblTeam.FldTeamName))
+                {
+                    return new StatusCodeResult(StatusCodes.Status409Conflict);
+                }
+                else
+                {
+                    throw;
+                }
+            }
 
-            return CreatedAtAction("GetTblTeam", new { id = tblTeam.FldTeamId }, tblTeam);
+            return CreatedAtAction("GetTblTeam", new { id = tblTeam.FldTeamName }, tblTeam);
         }
 
         // DELETE: api/Teams/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteTblTeam([FromRoute] long id)
+        public async Task<IActionResult> DeleteTblTeam([FromRoute] string id)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            var tblTeam = await _context.TblTeam.SingleOrDefaultAsync(m => m.FldTeamId == id);
+            var tblTeam = await _context.TblTeam.SingleOrDefaultAsync(m => m.FldTeamName == id);
             if (tblTeam == null)
             {
                 return NotFound();
@@ -117,9 +131,9 @@ namespace Version5.Controllers
             return Ok(tblTeam);
         }
 
-        private bool TblTeamExists(long id)
+        private bool TblTeamExists(string id)
         {
-            return _context.TblTeam.Any(e => e.FldTeamId == id);
+            return _context.TblTeam.Any(e => e.FldTeamName == id);
         }
     }
 }

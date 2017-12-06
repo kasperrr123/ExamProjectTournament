@@ -14,7 +14,7 @@ namespace Version5.Models
         public virtual DbSet<TblTeam> TblTeam { get; set; }
         public virtual DbSet<TblTournament> TblTournament { get; set; }
 
-        public db_examprojecttournamentContext(DbContextOptions<db_examprojecttournamentContext> options):base(options)
+        public db_examprojecttournamentContext(DbContextOptions<db_examprojecttournamentContext> options) : base(options)
         {
 
         }
@@ -59,7 +59,7 @@ namespace Version5.Models
                 entity.ToTable("tblJudge");
 
                 entity.HasIndex(e => e.FldJudgeLetter)
-                    .HasName("UQ__tblJudge__B0CFFB72AD944508")
+                    .HasName("UQ__tblJudge__B0CFFB72D2449B30")
                     .IsUnique();
 
                 entity.Property(e => e.FldJudgeId).HasColumnName("fldJudgeID");
@@ -123,8 +123,8 @@ namespace Version5.Models
                     .IsUnicode(false)
                     .ValueGeneratedNever();
 
-                entity.Property(e => e.FldData)
-                    .HasColumnName("fldData")
+                entity.Property(e => e.FldProjectFilePath)
+                    .HasColumnName("fldProjectFilePath")
                     .IsUnicode(false);
 
                 entity.Property(e => e.FldTournamentId).HasColumnName("fldTournamentID");
@@ -169,31 +169,24 @@ namespace Version5.Models
 
             modelBuilder.Entity<TblTeam>(entity =>
             {
-                entity.HasKey(e => e.FldTeamId);
+                entity.HasKey(e => e.FldTeamName);
 
                 entity.ToTable("tblTeam");
 
-                entity.HasIndex(e => e.FldTeamName)
-                    .HasName("UQ__tblTeam__444E4FEADF292A33")
-                    .IsUnique();
-
-                entity.Property(e => e.FldTeamId).HasColumnName("fldTeamID");
+                entity.Property(e => e.FldTeamName)
+                    .HasColumnName("fldTeamName")
+                    .HasMaxLength(150)
+                    .IsUnicode(false)
+                    .ValueGeneratedNever();
 
                 entity.Property(e => e.FldLeaderName)
                     .HasColumnName("fldLeaderName")
                     .HasMaxLength(50)
                     .IsUnicode(false);
 
-                entity.Property(e => e.FldMembers).HasColumnName("fldMembers");
-
                 entity.Property(e => e.FldProjectName)
                     .HasColumnName("fldProjectName")
                     .HasMaxLength(300)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.FldTeamName)
-                    .HasColumnName("fldTeamName")
-                    .HasMaxLength(150)
                     .IsUnicode(false);
 
                 entity.Property(e => e.FldTopic)
@@ -209,12 +202,12 @@ namespace Version5.Models
                 entity.HasOne(d => d.FldProjectNameNavigation)
                     .WithMany(p => p.TblTeam)
                     .HasForeignKey(d => d.FldProjectName)
-                    .HasConstraintName("FK__tblTeam__fldProj__239E4DCF");
+                    .HasConstraintName("FK__tblTeam__fldProj__22AA2996");
 
                 entity.HasOne(d => d.FldUsernameNavigation)
                     .WithMany(p => p.TblTeam)
                     .HasForeignKey(d => d.FldUsername)
-                    .HasConstraintName("FK__tblTeam__fldUser__24927208");
+                    .HasConstraintName("FK__tblTeam__fldUser__239E4DCF");
             });
 
             modelBuilder.Entity<TblTournament>(entity =>
@@ -238,17 +231,10 @@ namespace Version5.Models
                     .HasColumnName("fldStartDate")
                     .HasColumnType("datetime");
 
-                entity.Property(e => e.FldStartTime)
-                    .HasColumnName("fldStartTime")
-                    .HasMaxLength(25)
-                    .IsUnicode(false);
-
                 entity.Property(e => e.FldTournamentName)
                     .HasColumnName("fldTournamentName")
                     .HasMaxLength(150)
                     .IsUnicode(false);
-
-                entity.Property(e => e.FldYear).HasColumnName("fldYear");
             });
         }
     }

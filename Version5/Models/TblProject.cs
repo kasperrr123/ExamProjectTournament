@@ -12,7 +12,7 @@ namespace Version5.Models
 
         public string FldProjectName { get; set; }
         public int? FldTournamentId { get; set; }
-        public string FldData { get; set; }
+        public string FldProjectFilePath { get; set; }
 
         public TblTournament FldTournament { get; set; }
         public ICollection<TblTeam> TblTeam { get; set; }

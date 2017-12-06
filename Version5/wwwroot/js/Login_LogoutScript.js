@@ -1,5 +1,13 @@
 ﻿$(document).ready(function login() {
     var hostname = document.location.host;
+
+    if (isCookieValid()) {
+        $("#logindropdownnavbar").get(0).hidden = true;
+        $("#signupnavbar").get(0).hidden = true;
+        $("#mypagenavbar").get(0).hidden = false;
+        $("#logoutbutton").get(0).hidden = false;
+    }
+
     $("#loginbutton").click(function () {
         var loginObject = {
             fldUsername: $('#Loginusername').val(),
@@ -51,7 +59,24 @@
         }
     });
 
+    $("#mypagenavbar").click(function () {
+        var cookie = document.cookie;
+        var rank = cookie.split("=")[1];
+        switch (rank) {
+            case "301":
+                document.location.pathname = "teamPage.html";
+                break;
+            case "355":
+                document.location.pathname = "judgePage.html";
+                break;
+            case "395":
+                document.location.pathname = "adminPage.html";
+                break;
+            default:
+        }
 
+
+    });
 
     $("#logoutbutton").click(function () {
         var cookie = document.cookie;
@@ -61,6 +86,13 @@
     });
 });
 
+function isCookieValid() {
+    console.log(document.cookie);
+    if (document.cookie.length > 0) {
+        return true;
+    }
+    return false;
+}
 
 function createCookie(username, rank) {
     var expirationDay = "expires=" + new Date(new Date().getTime() + 60 * 60 * 24 * 1000);

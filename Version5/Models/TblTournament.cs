@@ -14,10 +14,8 @@ namespace Version5.Models
 
         public int FldTournamentId { get; set; }
         public string FldTournamentName { get; set; }
-        public int? FldYear { get; set; }
         public DateTime? FldStartDate { get; set; }
         public DateTime? FldEndDate { get; set; }
-        public string FldStartTime { get; set; }
         public string FldAddress { get; set; }
 
         public ICollection<TblJudge> TblJudge { get; set; }

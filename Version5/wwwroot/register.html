@@ -2,44 +2,61 @@
 <html>
 <head>
     <meta charset="utf-8">
+ 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/NavbarStyleSheet.css" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/Login_Logoutscript.js"></script>
+
     <script type="text/javascript" src="js/RegisterScript.js?n=1"></script>
-    <script type="text/javascript" src="js/Login_LogoutScript.js"></script>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/RegisterStyleSheet2.0.css" />
+
 
 </head>
 <body>
-    <nav class="navbar navbar-inverse">
-        <div class="container-fluid">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="Index.html">Young Enterprice</a>
+    <nav id="MainNavBar" class="navbar navbar-inverse">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="nav navbar-header" href="Index.html">Young Enterprice</a>
+        </div>
+        <div id="myNavbar" class="collapse navbar-collapse">
+
+            <div id="loggedin" class="nav navbar-header">Logged in as Team</div>
+            <div class="navbar-nav navbar-header navbar-right">
+                <ul class="">
+
+                    <li id="signupnavbar"><a href="register.html"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+                    <li class="active" id="logoutbutton" hidden="hidden"><a href="#">Log out</a></li>
+
+
+                </ul>
             </div>
-            <div class="collapse navbar-collapse" id="myNavbar">
-                <ul class="nav navbar-nav navbar-right">
-                    <li class="dropdown ">
-                        <a href="http://www.jquery2dotnet.com" class="dropdown-toggle" data-toggle="dropdown">Login <b class="caret"></b></a>
+            <div class="navbar-nav navbar-header navbar-right">
+                <ul>
+                    <content class="dropdown">
+                        <a id="logindropdownnavbar" class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a>
                         <ul class="dropdown-menu" style="padding: 15px;min-width: 250px;">
                             <li class="m-md-3">
                                 <input class="text-center mb-3" id="Loginusername" type="email" placeholder="Email" />
                                 <input class="text-center mb-3" id="Loginpassword" type="password" placeholder="Password" />
                                 <input type="button" id="loginbutton" value="Login" class="btn col-12" />
-
                             </li>
                         </ul>
-                    </li>
+                    </content>
+                    <li id="mypagenavbar" hidden="hidden"><a href="#"><span class="glyphicon glyphicon-home"></span> My page</a></li>
+
                 </ul>
             </div>
 
+
         </div>
     </nav>
+
 
 
     <div class="container-fluid ml-auto ml-5">
