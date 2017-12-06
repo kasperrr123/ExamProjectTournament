@@ -2,10 +2,17 @@
     var hostname = document.location.host;
 
     if (isCookieValid()) {
-        $("#logindropdownnavbar").get(0).hidden = true;
-        $("#signupnavbar").get(0).hidden = true;
-        $("#mypagenavbar").get(0).hidden = false;
-        $("#logoutbutton").get(0).hidden = false;
+        var email = document.cookie.split("=")[0];
+
+        $(".setLoggedInAs").text("Logged in as: " + email);
+
+
+
+        $(".showWhenLoggedIn").show();
+        $(".showWhenNotLoggedIn").hide();
+    } else {
+        $(".showWhenLoggedIn").hide();
+        $(".showWhenNotLoggedIn").show();
     }
 
     $("#loginbutton").click(function () {

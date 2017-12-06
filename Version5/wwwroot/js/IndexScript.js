@@ -1,5 +1,7 @@
 ﻿
 $(document).ready(function getInformation() {
+
+
     var hostname = document.location.host;
     // check if there is a cookie valid.
 

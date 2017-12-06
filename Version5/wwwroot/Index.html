@@ -3,19 +3,12 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-
-    <link rel="stylesheet" href="css/NavbarStyleSheet.css" />
-
+    <link rel="stylesheet" href="css/NavbarStyleSheet.css?n=1" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
     <script type="text/javascript" src="js/Login_Logoutscript.js"></script>
-
-    <script type="text/javascript" src="js/IndexScript.js"></script>
-   
-
+    <script type="text/javascript" src="js/IndexScript.js?n=1"></script>
     <title>YoungEnterprice.com</title>
 
 </head>
@@ -32,19 +25,19 @@
         </div>
         <div id="myNavbar" class="collapse navbar-collapse">
 
-            <div id="loggedin" class="nav navbar-header">Logged in as Team</div>
+            <div id="loggedin" class="nav navbar-header setLoggedInAs"></div>
             <div class="navbar-nav navbar-header navbar-right">
                 <ul class="">
 
-                    <li id="signupnavbar"><a href="register.html"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-                    <li class="active" id="logoutbutton" hidden="hidden"><a href="#">Log out</a></li>
+                    <content class="showWhenNotLoggedIn" id="signupnavbar"><a href="register.html"><span class="glyphicon glyphicon-user"></span> Sign Up</a></content>
+                    <content class="showWhenLoggedIn" id="logoutbutton"><a href="#">Log out</a></content>
 
-
+                        
                 </ul>
             </div>
             <div class="navbar-nav navbar-header navbar-right">
                 <ul>
-                    <content class="dropdown">
+                    <content class="dropdown showWhenNotLoggedIn">
                         <a id="logindropdownnavbar" class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a>
                         <ul class="dropdown-menu" style="padding: 15px;min-width: 250px;">
                             <li class="m-md-3">
@@ -54,7 +47,7 @@
                             </li>
                         </ul>
                     </content>
-                    <li id="mypagenavbar" hidden="hidden"><a href="#"><span class="glyphicon glyphicon-home"></span> My page</a></li>
+                    <content id="mypagenavbar" class="showWhenLoggedIn"><a href="#"><span class="glyphicon glyphicon-home"></span> My page</a></content>
 
                 </ul>
             </div>
@@ -64,9 +57,9 @@
     </nav>
 
 
-    <div class="row">
+    <div class="flex-md-row">
         <div class="col-md-4">
-            <div class="col-md-4 text-center">
+            <div class="col-md-4">
                 <h3>Start time: </h3>
             </div>
             <div class="col-md-8">
@@ -75,7 +68,7 @@
         </div>
 
         <div class="col-md-4">
-            <div class="col-md-4 text-center">
+            <div class="col-md-4">
                 <h3>End time: </h3>
             </div>
             <div class="col-md-8">
@@ -84,7 +77,7 @@
         </div>
 
         <div class="col-md-4">
-            <div class="col-md-4 text-center">
+            <div class="col-md-4">
                 <h3>Place: </h3>
             </div>
             <div class="col-md-8">

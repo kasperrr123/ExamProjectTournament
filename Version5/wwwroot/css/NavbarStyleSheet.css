@@ -12,13 +12,12 @@
 
 #loggedin {
     margin-top: 0.75%;
-    margin-left: 32%;
-    color: white;
+    margin-left: 28%;
+    color: Highlight;
 }
 
-#logoutbutton{
+#logoutbutton {
     margin-top: 0.75%;
-
 }
 
 #logindropdown {
