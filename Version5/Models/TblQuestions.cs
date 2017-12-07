@@ -12,6 +12,7 @@ namespace Version5.Models
 
         public long FldQuestionsId { get; set; }
         public long? FldQuestionnaireId { get; set; }
+        public double? FldModifier { get; set; }
         public string FldQuestion { get; set; }
 
         public TblQuestionnaire FldQuestionnaire { get; set; }

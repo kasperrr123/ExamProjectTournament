@@ -20,6 +20,7 @@ namespace Version5.Models
         {
 
         }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<TblAnswer>(entity =>
@@ -66,7 +67,7 @@ namespace Version5.Models
                 entity.ToTable("tblJudge");
 
                 entity.HasIndex(e => e.FldJudgeLetter)
-                    .HasName("UQ__tblJudge__B0CFFB726F5EA86B")
+                    .HasName("UQ__tblJudge__B0CFFB7236760E10")
                     .IsUnique();
 
                 entity.Property(e => e.FldJudgeId).HasColumnName("fldJudgeID");
@@ -154,6 +155,11 @@ namespace Version5.Models
 
                 entity.Property(e => e.FldTournamentId).HasColumnName("fldTournamentID");
 
+                entity.Property(e => e.FldType)
+                    .HasColumnName("fldType")
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
                 entity.HasOne(d => d.FldTopic)
                     .WithMany(p => p.TblQuestionnaire)
                     .HasForeignKey(d => d.FldTopicId)
@@ -172,6 +178,8 @@ namespace Version5.Models
                 entity.ToTable("tblQuestions");
 
                 entity.Property(e => e.FldQuestionsId).HasColumnName("fldQuestionsID");
+
+                entity.Property(e => e.FldModifier).HasColumnName("fldModifier");
 
                 entity.Property(e => e.FldQuestion)
                     .HasColumnName("fldQuestion")

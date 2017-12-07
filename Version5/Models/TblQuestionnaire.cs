@@ -13,6 +13,7 @@ namespace Version5.Models
         public long FldQuestionnaireId { get; set; }
         public int? FldTournamentId { get; set; }
         public long? FldTopicId { get; set; }
+        public string FldType { get; set; }
 
         public TblTopic FldTopic { get; set; }
         public TblTournament FldTournament { get; set; }

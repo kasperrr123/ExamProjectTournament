@@ -27,6 +27,20 @@ namespace Version5.Controllers
             return _context.TblQuestions;
         }
 
+
+        // GET: api/Questions/fldQUestionnaireID
+        [HttpGet("{fldQuestionnaireID}")]
+        public IEnumerable<TblQuestions> GetTblQuestions([FromRoute] int fldQuestionnaireID)
+        {
+
+            
+            var questionsForType = _context.TblQuestions.Where(n=> n.FldQuestionnaireId == fldQuestionnaireID);
+
+            return questionsForType;
+
+
+        }
+
         // GET: api/Questions/5
         [HttpGet("{id}")]
         public async Task<IActionResult> GetTblQuestions([FromRoute] long id)
