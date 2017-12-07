@@ -10,57 +10,57 @@ using Version5.Models;
 namespace Version5.Controllers
 {
     [Produces("application/json")]
-    [Route("api/Tournaments")]
-    public class TournamentsController : Controller
+    [Route("api/Topics")]
+    public class TopicsController : Controller
     {
         private readonly db_examprojecttournamentContext _context;
 
-        public TournamentsController(db_examprojecttournamentContext context)
+        public TopicsController(db_examprojecttournamentContext context)
         {
             _context = context;
         }
 
-        // GET: api/Tournaments
+        // GET: api/Topics
         [HttpGet]
-        public IEnumerable<TblTournament> GetTblTournament()
+        public IEnumerable<TblTopic> GetTblTopic()
         {
-            return _context.TblTournament;
+            return _context.TblTopic;
         }
 
-        // GET: api/Tournaments/5
+        // GET: api/Topics/5
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetTblTournament([FromRoute] int id)
+        public async Task<IActionResult> GetTblTopic([FromRoute] long id)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            var tblTournament = await _context.TblTournament.SingleOrDefaultAsync(m => m.FldTournamentId == id);
+            var tblTopic = await _context.TblTopic.SingleOrDefaultAsync(m => m.FldTopicId == id);
 
-            if (tblTournament == null)
+            if (tblTopic == null)
             {
                 return NotFound();
             }
 
-            return Ok(tblTournament);
+            return Ok(tblTopic);
         }
 
-        // PUT: api/Tournaments/5
+        // PUT: api/Topics/5
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutTblTournament([FromRoute] int id, [FromBody] TblTournament tblTournament)
+        public async Task<IActionResult> PutTblTopic([FromRoute] long id, [FromBody] TblTopic tblTopic)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != tblTournament.FldTournamentId)
+            if (id != tblTopic.FldTopicId)
             {
                 return BadRequest();
             }
 
-            _context.Entry(tblTournament).State = EntityState.Modified;
+            _context.Entry(tblTopic).State = EntityState.Modified;
 
             try
             {
@@ -68,7 +68,7 @@ namespace Version5.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!TblTournamentExists(id))
+                if (!TblTopicExists(id))
                 {
                     return NotFound();
                 }
@@ -81,45 +81,45 @@ namespace Version5.Controllers
             return NoContent();
         }
 
-        // POST: api/Tournaments
+        // POST: api/Topics
         [HttpPost]
-        public async Task<IActionResult> PostTblTournament([FromBody] TblTournament tblTournament)
+        public async Task<IActionResult> PostTblTopic([FromBody] TblTopic tblTopic)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            _context.TblTournament.Add(tblTournament);
+            _context.TblTopic.Add(tblTopic);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetTblTournament", new { id = tblTournament.FldTournamentId }, tblTournament);
+            return CreatedAtAction("GetTblTopic", new { id = tblTopic.FldTopicId }, tblTopic);
         }
 
-        // DELETE: api/Tournaments/5
+        // DELETE: api/Topics/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteTblTournament([FromRoute] int id)
+        public async Task<IActionResult> DeleteTblTopic([FromRoute] long id)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            var tblTournament = await _context.TblTournament.SingleOrDefaultAsync(m => m.FldTournamentId == id);
-            if (tblTournament == null)
+            var tblTopic = await _context.TblTopic.SingleOrDefaultAsync(m => m.FldTopicId == id);
+            if (tblTopic == null)
             {
                 return NotFound();
             }
 
-            _context.TblTournament.Remove(tblTournament);
+            _context.TblTopic.Remove(tblTopic);
             await _context.SaveChangesAsync();
 
-            return Ok(tblTournament);
+            return Ok(tblTopic);
         }
 
-        private bool TblTournamentExists(int id)
+        private bool TblTopicExists(long id)
         {
-            return _context.TblTournament.Any(e => e.FldTournamentId == id);
+            return _context.TblTopic.Any(e => e.FldTopicId == id);
         }
     }
 }

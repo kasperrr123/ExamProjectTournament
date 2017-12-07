@@ -7,9 +7,16 @@
         method: 'GET',
         contentType: 'application/json',
         success: function (data) {
-           
+            var size;
+            if (screen.height <= 768 && screen.width <= 1366) {
+                size = "height=" + (screen.height - 125) + "," + "width=" + (screen.width - 100);
+
+            } else {
+                size = "height=" + (screen.height - 250) + "," + "width=" + (screen.width - 850);
+
+            }
+
             for (var i = 0; i < data.length; i++) {
-                alert(data.FldProjectFilePath);
                 var table = document.getElementById("myManagment");
 
                 // Create an empty <tr> element and add it to the 1st position of the table:
@@ -24,21 +31,37 @@
                 var linkText = document.createTextNode("View report");
                 a.appendChild(linkText);
                 a.title = "View report";
-                a.href = data[i].FldProjectFilePath;
+                a.target = "_blank";
+                data[i].fldProjectFilePath;
+                a.href = data[i].fldProjectFilePath;
                 cell2.appendChild(a);
-
-                //TODO
-                //var cell3 = row.insertCell(2);
+                
+                var cell3 = row.insertCell(2);
                 
 
-                //var cellbutton = document.createElement("input");
-                //cellbutton.type = "btn";
-                //cellbutton.className = "btn";
-                //cell3.append(cellbutton);
+                var JudgeReportButton = document.createElement("button");
+                JudgeReportButton.innerText = "JudgeReport";
+                JudgeReportButton.type = "btn";
+                JudgeReportButton.className = "btn btn-danger";
+                JudgeReportButton.onclick = function () {
+                    window.open('http://' + hostname + '/EditQuestionnairePage.html', "_blank", size);
+                }
+                cell3.append(JudgeReportButton);
 
-                // Add some text to the new cells:
-             
-                
+                var cell4 = row.insertCell(3);
+
+                var judgeInterviewButton = document.createElement("button");
+                judgeInterviewButton.innerText = "JudgeInterview";
+                judgeInterviewButton.type = "btn";
+                judgeInterviewButton.className = "btn btn-danger";
+                judgeInterviewButton.onclick = function () {
+                    alert("TODO");
+                }
+                cell4.append(judgeInterviewButton);
+
+                var cell5 = row.insertCell(4);
+
+                cell5.innerHTML = "add score here";
 
             }
 

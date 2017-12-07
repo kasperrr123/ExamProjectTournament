@@ -10,15 +10,16 @@ namespace Version5.Models
         public virtual DbSet<TblJudge> TblJudge { get; set; }
         public virtual DbSet<TblLogin> TblLogin { get; set; }
         public virtual DbSet<TblProject> TblProject { get; set; }
-        public virtual DbSet<TblQuestionaire> TblQuestionaire { get; set; }
+        public virtual DbSet<TblQuestionnaire> TblQuestionnaire { get; set; }
+        public virtual DbSet<TblQuestions> TblQuestions { get; set; }
         public virtual DbSet<TblTeam> TblTeam { get; set; }
+        public virtual DbSet<TblTopic> TblTopic { get; set; }
         public virtual DbSet<TblTournament> TblTournament { get; set; }
 
         public db_examprojecttournamentContext(DbContextOptions<db_examprojecttournamentContext> options) : base(options)
         {
 
         }
-
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<TblAnswer>(entity =>
@@ -29,27 +30,33 @@ namespace Version5.Models
 
                 entity.Property(e => e.FldAnswerId).HasColumnName("fldAnswerID");
 
-                entity.Property(e => e.FldFirstQuestionScore).HasColumnName("fldFirstQuestionScore");
-
-                entity.Property(e => e.FldFourthQuestionScore).HasColumnName("fldFourthQuestionScore");
+                entity.Property(e => e.FldAnswer)
+                    .HasColumnName("fldAnswer")
+                    .IsUnicode(false);
 
                 entity.Property(e => e.FldJudgeId).HasColumnName("fldJudgeID");
 
-                entity.Property(e => e.FldQuestionaireId).HasColumnName("fldQuestionaireID");
+                entity.Property(e => e.FldQuestionsId).HasColumnName("fldQuestionsID");
 
-                entity.Property(e => e.FldSecondQuestionScore).HasColumnName("fldSecondQuestionScore");
-
-                entity.Property(e => e.FldThirdQuestionScore).HasColumnName("fldThirdQuestionScore");
+                entity.Property(e => e.FldTeamName)
+                    .HasColumnName("fldTeamName")
+                    .HasMaxLength(150)
+                    .IsUnicode(false);
 
                 entity.HasOne(d => d.FldJudge)
                     .WithMany(p => p.TblAnswer)
                     .HasForeignKey(d => d.FldJudgeId)
-                    .HasConstraintName("FK__tblAnswer__fldJu__1FCDBCEB");
+                    .HasConstraintName("FK__tblAnswer__fldJu__2B3F6F97");
 
-                entity.HasOne(d => d.FldQuestionaire)
+                entity.HasOne(d => d.FldQuestions)
                     .WithMany(p => p.TblAnswer)
-                    .HasForeignKey(d => d.FldQuestionaireId)
-                    .HasConstraintName("FK__tblAnswer__fldQu__1ED998B2");
+                    .HasForeignKey(d => d.FldQuestionsId)
+                    .HasConstraintName("FK__tblAnswer__fldQu__2A4B4B5E");
+
+                entity.HasOne(d => d.FldTeamNameNavigation)
+                    .WithMany(p => p.TblAnswer)
+                    .HasForeignKey(d => d.FldTeamName)
+                    .HasConstraintName("FK__tblAnswer__fldTe__29572725");
             });
 
             modelBuilder.Entity<TblJudge>(entity =>
@@ -59,7 +66,7 @@ namespace Version5.Models
                 entity.ToTable("tblJudge");
 
                 entity.HasIndex(e => e.FldJudgeLetter)
-                    .HasName("UQ__tblJudge__B0CFFB72D2449B30")
+                    .HasName("UQ__tblJudge__B0CFFB726F5EA86B")
                     .IsUnique();
 
                 entity.Property(e => e.FldJudgeId).HasColumnName("fldJudgeID");
@@ -80,12 +87,12 @@ namespace Version5.Models
                 entity.HasOne(d => d.FldTournament)
                     .WithMany(p => p.TblJudge)
                     .HasForeignKey(d => d.FldTournamentId)
-                    .HasConstraintName("FK__tblJudge__fldTou__1B0907CE");
+                    .HasConstraintName("FK__tblJudge__fldTou__25869641");
 
                 entity.HasOne(d => d.FldUsernameNavigation)
                     .WithMany(p => p.TblJudge)
                     .HasForeignKey(d => d.FldUsername)
-                    .HasConstraintName("FK__tblJudge__fldUse__1BFD2C07");
+                    .HasConstraintName("FK__tblJudge__fldUse__267ABA7A");
             });
 
             modelBuilder.Entity<TblLogin>(entity =>
@@ -135,36 +142,47 @@ namespace Version5.Models
                     .HasConstraintName("FK__tblProjec__fldTo__145C0A3F");
             });
 
-            modelBuilder.Entity<TblQuestionaire>(entity =>
+            modelBuilder.Entity<TblQuestionnaire>(entity =>
             {
-                entity.HasKey(e => e.FldQuestionaireId);
+                entity.HasKey(e => e.FldQuestionnaireId);
 
-                entity.ToTable("tblQuestionaire");
+                entity.ToTable("tblQuestionnaire");
 
-                entity.Property(e => e.FldQuestionaireId).HasColumnName("fldQuestionaireID");
+                entity.Property(e => e.FldQuestionnaireId).HasColumnName("fldQuestionnaireID");
 
-                entity.Property(e => e.FldFirstQuestion)
-                    .HasColumnName("fldFirstQuestion")
-                    .IsUnicode(false);
-
-                entity.Property(e => e.FldFourthQuestion)
-                    .HasColumnName("fldFourthQuestion")
-                    .IsUnicode(false);
-
-                entity.Property(e => e.FldSecondQuestion)
-                    .HasColumnName("fldSecondQuestion")
-                    .IsUnicode(false);
-
-                entity.Property(e => e.FldThirdQuestion)
-                    .HasColumnName("fldThirdQuestion")
-                    .IsUnicode(false);
+                entity.Property(e => e.FldTopicId).HasColumnName("fldTopicID");
 
                 entity.Property(e => e.FldTournamentId).HasColumnName("fldTournamentID");
 
+                entity.HasOne(d => d.FldTopic)
+                    .WithMany(p => p.TblQuestionnaire)
+                    .HasForeignKey(d => d.FldTopicId)
+                    .HasConstraintName("FK__tblQuesti__fldTo__1A14E395");
+
                 entity.HasOne(d => d.FldTournament)
-                    .WithMany(p => p.TblQuestionaire)
+                    .WithMany(p => p.TblQuestionnaire)
                     .HasForeignKey(d => d.FldTournamentId)
-                    .HasConstraintName("FK__tblQuesti__fldTo__173876EA");
+                    .HasConstraintName("FK__tblQuesti__fldTo__1920BF5C");
+            });
+
+            modelBuilder.Entity<TblQuestions>(entity =>
+            {
+                entity.HasKey(e => e.FldQuestionsId);
+
+                entity.ToTable("tblQuestions");
+
+                entity.Property(e => e.FldQuestionsId).HasColumnName("fldQuestionsID");
+
+                entity.Property(e => e.FldQuestion)
+                    .HasColumnName("fldQuestion")
+                    .IsUnicode(false);
+
+                entity.Property(e => e.FldQuestionnaireId).HasColumnName("fldQuestionnaireID");
+
+                entity.HasOne(d => d.FldQuestionnaire)
+                    .WithMany(p => p.TblQuestions)
+                    .HasForeignKey(d => d.FldQuestionnaireId)
+                    .HasConstraintName("FK__tblQuesti__fldQu__1CF15040");
             });
 
             modelBuilder.Entity<TblTeam>(entity =>
@@ -189,10 +207,7 @@ namespace Version5.Models
                     .HasMaxLength(300)
                     .IsUnicode(false);
 
-                entity.Property(e => e.FldTopic)
-                    .HasColumnName("fldTopic")
-                    .HasMaxLength(40)
-                    .IsUnicode(false);
+                entity.Property(e => e.FldTopicId).HasColumnName("fldTopicID");
 
                 entity.Property(e => e.FldUsername)
                     .HasColumnName("fldUsername")
@@ -202,12 +217,31 @@ namespace Version5.Models
                 entity.HasOne(d => d.FldProjectNameNavigation)
                     .WithMany(p => p.TblTeam)
                     .HasForeignKey(d => d.FldProjectName)
-                    .HasConstraintName("FK__tblTeam__fldProj__22AA2996");
+                    .HasConstraintName("FK__tblTeam__fldProj__1FCDBCEB");
+
+                entity.HasOne(d => d.FldTopic)
+                    .WithMany(p => p.TblTeam)
+                    .HasForeignKey(d => d.FldTopicId)
+                    .HasConstraintName("FK__tblTeam__fldTopi__21B6055D");
 
                 entity.HasOne(d => d.FldUsernameNavigation)
                     .WithMany(p => p.TblTeam)
                     .HasForeignKey(d => d.FldUsername)
-                    .HasConstraintName("FK__tblTeam__fldUser__239E4DCF");
+                    .HasConstraintName("FK__tblTeam__fldUser__20C1E124");
+            });
+
+            modelBuilder.Entity<TblTopic>(entity =>
+            {
+                entity.HasKey(e => e.FldTopicId);
+
+                entity.ToTable("tblTopic");
+
+                entity.Property(e => e.FldTopicId).HasColumnName("fldTopicID");
+
+                entity.Property(e => e.FldTopic)
+                    .HasColumnName("fldTopic")
+                    .HasMaxLength(150)
+                    .IsUnicode(false);
             });
 
             modelBuilder.Entity<TblTournament>(entity =>

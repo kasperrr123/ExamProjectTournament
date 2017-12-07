@@ -10,57 +10,57 @@ using Version5.Models;
 namespace Version5.Controllers
 {
     [Produces("application/json")]
-    [Route("api/Tournaments")]
-    public class TournamentsController : Controller
+    [Route("api/Questions")]
+    public class QuestionsController : Controller
     {
         private readonly db_examprojecttournamentContext _context;
 
-        public TournamentsController(db_examprojecttournamentContext context)
+        public QuestionsController(db_examprojecttournamentContext context)
         {
             _context = context;
         }
 
-        // GET: api/Tournaments
+        // GET: api/Questions
         [HttpGet]
-        public IEnumerable<TblTournament> GetTblTournament()
+        public IEnumerable<TblQuestions> GetTblQuestions()
         {
-            return _context.TblTournament;
+            return _context.TblQuestions;
         }
 
-        // GET: api/Tournaments/5
+        // GET: api/Questions/5
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetTblTournament([FromRoute] int id)
+        public async Task<IActionResult> GetTblQuestions([FromRoute] long id)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            var tblTournament = await _context.TblTournament.SingleOrDefaultAsync(m => m.FldTournamentId == id);
+            var tblQuestions = await _context.TblQuestions.SingleOrDefaultAsync(m => m.FldQuestionsId == id);
 
-            if (tblTournament == null)
+            if (tblQuestions == null)
             {
                 return NotFound();
             }
 
-            return Ok(tblTournament);
+            return Ok(tblQuestions);
         }
 
-        // PUT: api/Tournaments/5
+        // PUT: api/Questions/5
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutTblTournament([FromRoute] int id, [FromBody] TblTournament tblTournament)
+        public async Task<IActionResult> PutTblQuestions([FromRoute] long id, [FromBody] TblQuestions tblQuestions)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != tblTournament.FldTournamentId)
+            if (id != tblQuestions.FldQuestionsId)
             {
                 return BadRequest();
             }
 
-            _context.Entry(tblTournament).State = EntityState.Modified;
+            _context.Entry(tblQuestions).State = EntityState.Modified;
 
             try
             {
@@ -68,7 +68,7 @@ namespace Version5.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!TblTournamentExists(id))
+                if (!TblQuestionsExists(id))
                 {
                     return NotFound();
                 }
@@ -81,45 +81,45 @@ namespace Version5.Controllers
             return NoContent();
         }
 
-        // POST: api/Tournaments
+        // POST: api/Questions
         [HttpPost]
-        public async Task<IActionResult> PostTblTournament([FromBody] TblTournament tblTournament)
+        public async Task<IActionResult> PostTblQuestions([FromBody] TblQuestions tblQuestions)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            _context.TblTournament.Add(tblTournament);
+            _context.TblQuestions.Add(tblQuestions);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetTblTournament", new { id = tblTournament.FldTournamentId }, tblTournament);
+            return CreatedAtAction("GetTblQuestions", new { id = tblQuestions.FldQuestionsId }, tblQuestions);
         }
 
-        // DELETE: api/Tournaments/5
+        // DELETE: api/Questions/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteTblTournament([FromRoute] int id)
+        public async Task<IActionResult> DeleteTblQuestions([FromRoute] long id)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            var tblTournament = await _context.TblTournament.SingleOrDefaultAsync(m => m.FldTournamentId == id);
-            if (tblTournament == null)
+            var tblQuestions = await _context.TblQuestions.SingleOrDefaultAsync(m => m.FldQuestionsId == id);
+            if (tblQuestions == null)
             {
                 return NotFound();
             }
 
-            _context.TblTournament.Remove(tblTournament);
+            _context.TblQuestions.Remove(tblQuestions);
             await _context.SaveChangesAsync();
 
-            return Ok(tblTournament);
+            return Ok(tblQuestions);
         }
 
-        private bool TblTournamentExists(int id)
+        private bool TblQuestionsExists(long id)
         {
-            return _context.TblTournament.Any(e => e.FldTournamentId == id);
+            return _context.TblQuestions.Any(e => e.FldQuestionsId == id);
         }
     }
 }

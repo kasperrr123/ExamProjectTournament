@@ -19,6 +19,7 @@ namespace Version5.Controllers
         {
             _context = context;
         }
+        [HttpGet]
         public List<Object> GetTblTeam()
         {
             var collection = _context.TblTeam;
@@ -30,7 +31,7 @@ namespace Version5.Controllers
                 var teamNames = new
                 {
                     fldTeamName = item.FldTeamName,
-                    FldProjectFilePath =projectfilepath
+                    FldProjectFilePath = projectfilepath
                 };
                 collectionObj.Add(teamNames);
             }
@@ -40,22 +41,23 @@ namespace Version5.Controllers
             return collectionObj;
         }
 
-        [HttpGet("{id}")]
-        public async Task<IActionResult> GetTblTeam([FromRoute] string id)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
+        //    [HttpGet("{id}")]
+        //    public async Task<IActionResult> GetTblTeam([FromRoute] string id)
+        //    {
+        //        if (!ModelState.IsValid)
+        //        {
+        //            return BadRequest(ModelState);
+        //        }
 
-            var tblTeam = await _context.TblTeam.SingleOrDefaultAsync(m => m.FldTeamName == id);
+        //        var tblTeam = await _context.TblTeam.SingleOrDefaultAsync(m => m.FldTeamName == id);
 
-            if (tblTeam == null)
-            {
-                return NotFound();
-            }
-            var tblProjectUrl = _context.TblProject.Find(tblTeam.FldProjectName).FldProjectFilePath;
-            return Ok(tblProjectUrl);
-        }
+        //        if (tblTeam == null)
+        //        {
+        //            return NotFound();
+        //        }
+        //        var tblProjectUrl = _context.TblProject.Find(tblTeam.FldProjectName).FldProjectFilePath;
+        //        return Ok(tblProjectUrl);
+        //    }
+        //}
     }
 }

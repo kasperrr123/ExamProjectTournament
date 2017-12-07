@@ -9,7 +9,7 @@ $(document).ready(function () {
             var ProjectData = {
                 fldTournamentID: TournamentID,
                 fldProjectName: $('#projectname').val(),
-                fldData: message
+                FldProjectFilePath: message
             };
             $.ajax({
                 url: 'http://' + hostname+'/api/projects',
@@ -43,13 +43,24 @@ $(document).ready(function () {
                 }
             });
         }
+        function getTopicID() {
+            var topicID = 1;
+            if ($('#Category').val() == "Science & Technology") {
+                topicID = 2;
+            } else if ($('#Category').val() == "Society & Globalization") {
+                topicID = 4;
+            } else if ($('#Category').val() == "Trade & Skills") {
+                topicID = 3;
+            }
+            return topicID;
+        }
         function createTeam() {
+            var topicID = getTopicID();
             var TeamData = {
                 fldProjectName: $('#projectname').val(),
                 fldUsername: $('#email').val(),
                 fldTeamName: $('#TeamName').val(),
-                fldTopic: $('#Category').val(),
-                fldMembers: 4,
+                fldTopicID: topicID,
                 fldLeaderName: $('#TeamLeader').val()
             };
             $.ajax({
