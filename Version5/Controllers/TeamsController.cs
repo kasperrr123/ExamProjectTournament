@@ -11,7 +11,6 @@ namespace Version5.Controllers
 {
     [Produces("application/json")]
     [Route("api/Teams")]
-
     public class TeamsController : Controller
     {
         private readonly db_examprojecttournamentContext _context;
@@ -46,8 +45,6 @@ namespace Version5.Controllers
 
             return Ok(tblTeam);
         }
-
-
 
         // PUT: api/Teams/5
         [HttpPut("{id}")]

@@ -9,7 +9,7 @@ namespace Version5.Models
         {
             TblJudge = new HashSet<TblJudge>();
             TblProject = new HashSet<TblProject>();
-            TblQuestionaire = new HashSet<TblQuestionaire>();
+            TblQuestionnaire = new HashSet<TblQuestionnaire>();
         }
 
         public int FldTournamentId { get; set; }
@@ -20,6 +20,6 @@ namespace Version5.Models
 
         public ICollection<TblJudge> TblJudge { get; set; }
         public ICollection<TblProject> TblProject { get; set; }
-        public ICollection<TblQuestionaire> TblQuestionaire { get; set; }
+        public ICollection<TblQuestionnaire> TblQuestionnaire { get; set; }
     }
 }
