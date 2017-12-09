@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script src="https://rawgit.com/wenzhixin/bootstrap-table/master/src/bootstrap-table.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
     <link rel="stylesheet" href="css/EditQuestionnaire.css" />
@@ -21,7 +20,7 @@
     </nav>
     <div class="container-fluid margin-bottom">
         <div class="flex-md-row">
-            <select id="dropdown" onchange="getQuestions()">
+            <select id="dropdown" onchange="">
                 <option>Business & Service</option>
                 <option>Science & Technology</option>
                 <option>Trade & Skills</option>
@@ -30,7 +29,7 @@
         </div>
     </div>
     <div class="container-fluid">
-        <h3>Interview</h3>
+        <h3>Report</h3>
     </div>
     <div class="container-fluid">
         <div class="flex-md-row">
@@ -38,8 +37,8 @@
                 <table class="table table-responsive table-striped" id="tableReport">
                     <thead>
                         <tr>
-                            <th data-field="fldQuestion">Question</th>
-                            <th data-field="fldModifier">Modifier</th>
+                            <th>Question</th>
+                            <th>Modifier</th>
                             <th>Change</th>
                         </tr>
                     </thead>
@@ -48,7 +47,7 @@
         </div>
     </div>
     <div class="container-fluid">
-        <h3>Report</h3>
+        <h3>Interview</h3>
     </div>
     <div class="container-fluid">
         <div class="flex-md-row">
@@ -56,8 +55,8 @@
                 <table class="table table-responsive table-striped" id="tableInterview">
                     <thead>
                         <tr>
-                            <th data-field="fldQuestion">Question</th>
-                            <th data-field="fldModifier">Modifier</th>
+                            <th>Question</th>
+                            <th>Modifier</th>
                             <th>Change</th>
                         </tr>
                     </thead>

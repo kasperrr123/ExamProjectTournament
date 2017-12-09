@@ -1,4 +1,28 @@
-﻿$(document).ready(function () {
+﻿function OpenReportPage(teamname) {
+    var size;
+    if (screen.height <= 768 && screen.width <= 1366) {
+        size = "height=" + (screen.height - 125) + "," + "width=" + (screen.width - 100);
+
+    } else {
+        size = "height=" + (screen.height - 250) + "," + "width=" + (screen.width - 850);
+
+    }
+
+    mywindow = window.open('http://localhost:55655/AnswerQuestionairePage.html?Teamname=' + teamname.id +'&type=report', "_blank", size);
+}
+function OpenInterviewPage(teamname) {
+    var size;
+    if (screen.height <= 768 && screen.width <= 1366) {
+        size = "height=" + (screen.height - 125) + "," + "width=" + (screen.width - 100);
+
+    } else {
+        size = "height=" + (screen.height - 250) + "," + "width=" + (screen.width - 850);
+
+    }
+    mywindow = window.open('http://localhost:55655/AnswerQuestionairePage.html?Teamname=' + teamname.id + '&type=interview', "_blank", size);
+}
+$(document).ready(function () {
+
     var hostname = document.location.host;
 
 
@@ -7,16 +31,9 @@
         method: 'GET',
         contentType: 'application/json',
         success: function (data) {
-            var size;
-            if (screen.height <= 768 && screen.width <= 1366) {
-                size = "height=" + (screen.height - 125) + "," + "width=" + (screen.width - 100);
-
-            } else {
-                size = "height=" + (screen.height - 250) + "," + "width=" + (screen.width - 850);
-
-            }
-
+         
             for (var i = 0; i < data.length; i++) {
+              
                 var table = document.getElementById("myManagment");
 
                 // Create an empty <tr> element and add it to the 1st position of the table:
@@ -27,6 +44,7 @@
                 cell1.innerHTML = data[i].fldTeamName;
 
                 var cell2 = row.insertCell(1);
+
                 var a = document.createElement('a');
                 var linkText = document.createTextNode("View report");
                 a.appendChild(linkText);
@@ -37,27 +55,25 @@
                 cell2.appendChild(a);
                 
                 var cell3 = row.insertCell(2);
-                
 
-                var JudgeReportButton = document.createElement("button");
-                JudgeReportButton.innerText = "JudgeReport";
-                JudgeReportButton.type = "btn";
-                JudgeReportButton.className = "btn btn-danger";
-                JudgeReportButton.onclick = function () {
-                    window.open('http://' + hostname + '/EditQuestionnairePage.html', "_blank", size);
-                }
-                cell3.append(JudgeReportButton);
+                var ReportInterview = document.createElement('tr');
+                ReportInterview.innerHTML = '<button id="' + data[i].fldTeamName +'" class="btn btn-danger" onclick="OpenReportPage(this)">JudgeReport</button>';
+
+                //var JudgeReportButton = document.createElement("button");
+                //JudgeReportButton.innerText = "JudgeReport";
+                //JudgeReportButton.type = "btn";
+                //JudgeReportButton.className = "btn btn-danger";
+                //console.log(data[i].fldTeamName);
+                //JudgeReportButton.onclick = OpenPage(data[i].fldTeamName);
+               
+                cell3.append(ReportInterview);
 
                 var cell4 = row.insertCell(3);
+                var InterviewButton = document.createElement('tr');
+                InterviewButton.innerHTML = '<button id="' + data[i].fldTeamName + '" class="btn btn-danger" onclick="OpenInterviewPage(this)">Judge Interview</button>';
 
-                var judgeInterviewButton = document.createElement("button");
-                judgeInterviewButton.innerText = "JudgeInterview";
-                judgeInterviewButton.type = "btn";
-                judgeInterviewButton.className = "btn btn-danger";
-                judgeInterviewButton.onclick = function () {
-                    alert("TODO");
-                }
-                cell4.append(judgeInterviewButton);
+                cell4.append(InterviewButton);
+
 
                 var cell5 = row.insertCell(4);
 
@@ -70,6 +86,7 @@
             alert("Error loading teams");
         }
     });
+    
     //GetLinkFromTeamName("Davids team");
     // Find a <table> element with id="myTable":
     
