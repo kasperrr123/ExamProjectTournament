@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Version5.Models;
+using System.Text;
 
 namespace Version5.Controllers
 {
@@ -89,7 +90,8 @@ namespace Version5.Controllers
             {
                 return BadRequest(ModelState);
             }
-
+            tblLogin.FldPassword = Encryption(tblLogin.FldPassword, 4);
+            Console.WriteLine(tblLogin.FldPassword);
             _context.TblLogin.Add(tblLogin);
             try
             {
@@ -126,7 +128,8 @@ namespace Version5.Controllers
             }
 
             _context.TblLogin.Remove(tblLogin);
-            await _context.SaveChangesAsync();
+            _context.SaveChanges();
+            //await _context.SaveChangesAsync();
 
             return Ok(tblLogin);
         }
@@ -134,6 +137,26 @@ namespace Version5.Controllers
         private bool TblLoginExists(string id)
         {
             return _context.TblLogin.Any(e => e.FldUsername == id);
+        }
+
+        private string Encryption(string text, int key)
+        {
+            byte[] asciiBytes = Encoding.ASCII.GetBytes(text);
+            List<int> asciiValuesWithKey = new List<int>();
+            foreach (var item in asciiBytes)
+            {
+                string value = item.ToString();
+                int valueWithKey = int.Parse(value) + key;
+                asciiValuesWithKey.Add(valueWithKey);
+            }
+
+            string encryptedMessage = "";
+            foreach (var item in asciiValuesWithKey)
+            {
+                encryptedMessage += (Convert.ToChar(item));
+            }
+
+            return encryptedMessage;
         }
     }
 }

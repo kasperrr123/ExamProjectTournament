@@ -11,12 +11,14 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="https://rawgit.com/wenzhixin/bootstrap-table/master/src/bootstrap-table.js"></script>
+    <script type="text/javascript" src="js/ManageLoginsTableScript.js?n=1"></script>
     <script type="text/javascript" src="js/Login_Logoutscript.js?n=1"></script>
     <script src="js/AdminScript.js?n=1"></script>
     <title>AdminPage</title>
 
 </head>
-<body>
+<body id="bodyid">
+    <!--Navbar-->
     <nav id="MainNavBar" class="navbar navbar-inverse">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
@@ -53,13 +55,13 @@
 
         </div>
     </nav>
-
-
+    <!--Schedule Label-->
     <div class="flex-md-row-reverse">
         <div class="container-fluid">
             <h2>Schedule</h2>
         </div>
     </div>
+    <!--Schedule Tabel-->
     <div class="container-fluid">
         <div class="flex-md-row">
             <div>
@@ -85,10 +87,7 @@
             </div>
         </div>
     </div>
-
-
-
-
+    <!--Manage logins label, dropdown and information-->
     <div class="flex-md-row-reverse">
         <div class="container-fluid">
             <h2>Manage logins</h2>
@@ -96,29 +95,110 @@
                 <option selected>Teams</option>
                 <option>Judges</option>
             </select>
+            <p>Double click on a user to gain access to settings</p>
         </div>
     </div>
-
+    <!--Manage logins Table-->
     <div class="container-fluid">
         <div class="flex-md-row-reverse">
             <div>
-                <table class=" table table-responsive table-striped" id="manageLoginsTable">
+                <table class="table table-responsive table-striped" data-search="true" data-toggle="tooltip" 
+                       title="Double click for settings" id="manageLoginsTable">
                     <thead>
-                        <tr>
+                        <tr class="danger">
                             <th data-field="fldUsername">Username</th>
-                            <th data-field="fldPassword">Password</th>
+                            <th  data-field="fldPassword">Password</th>
                             <th data-field="fldRank">Rank</th>
-                            <!--Under this field i was thinking we could have a single button for options?
-                                like deleting and showing password? - Or maybe a right click?-->
-                            <th> Options</th>
                         </tr>
                     </thead>
                 </table>
             </div>
         </div>
     </div>
+    <!--Modal for 2 buttons for show password and delete user when double clicked a cell/row
+        in the manage logins Table-->
+    <div id="myModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
 
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">User settings</h4>
+                </div>
+                <div class="modal-body">
+                    <button id="ShowPasswordBtn" class="btn btn-primary">Show password</button>
+                    <button id="DeleteUserBtn" class="btn btn-danger">Delete user</button>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
 
+        </div>
+    </div>
+    <!--Modal for clicking yes or no to delete user-->
+    <div id="deleteUserModal" class="modal fade center" role="dialog">
+        <div class="modal-dialog">
 
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 id="deleteUserHeadline"> </h4>
+                </div>
+                <div class="modal-body">
+                    <button id="YesBtn" data-dismiss="modal" class="btn btn-primary">Yes</button>
+                    <button id="NoBtn" data-dismiss="modal" class="btn btn-danger">No</button>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <!--Modal for Entering password to show password-->
+    <div id="EnterPasswordForShowingPassword" class="modal fade center" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Extra security, enter password to show password</h4>
+                </div>
+                <div class="modal-body">
+                    <p>Enter password here</p>
+                    <input id="password" type="password" />
+                    <button data-dismiss="modal" id="showBtn" class="btn btn-success">Show</button>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <!--Modal for showing password after gaining access-->
+    <div id="ModalForShowingPassword" class="modal fade center" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Access granted</h4>
+                </div>
+                <div class="modal-body">
+                    <p id="fieldForPassword"></p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
 </body>
 </html>
