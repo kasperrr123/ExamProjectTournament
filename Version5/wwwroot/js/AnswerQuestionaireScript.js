@@ -1,65 +1,39 @@
 ﻿var hostname = document.location.host;
 
 $(document).ready(function () {
-    getQuestions();
-    $("#dropdown").change(function () {
-        getQuestions();
-    });
+    var teamname = gup('Teamname');
+    var type = gup('type')
+    teamname = decodeURI(teamname)
+    console.log(teamname + " " + type);
+    getQuestions(teamname, type);
 
-
-
-
-    function getQuestions() {
-        var topic = $("#dropdown").val();
-
-        var id, interviewID;
-        switch (topic) {
-            case 'Business & Service':
-                id = 1;
-                interviewID = 5;
-                break;
-            case 'Science & Technology':
-                id = 2;
-                interviewID = 6;
-                break;
-            case 'Trade & Skills':
-                id = 3;
-                interviewID = 7;
-                break;
-            case 'Society & Globalization':
-                id = 4;
-                interviewID = 8;
-                break;
-            default:
-        }
-        $.ajax({
-            url: 'http://' + hostname + '/api/Questions/' + id,
-            type: "GET",
-            contentType: "application/json",
-            dataType: "json",
-            success: function (data) {
-                UpdateTable(data, "tableReport");
-            },
-            error: function () {
-                alert("couldn't update table");
-            }
-
-        });
-
-        $.ajax({
-            url: 'http://' + hostname + '/api/Questions/' + interviewID,
-            type: "GET",
-            contentType: "application/json",
-            dataType: "json",
-            success: function (data) {
-                UpdateTable(data, "tableInterview");
-            },
-            error: function () {
-                alert("couldn't update table");
-            }
-        });
+    function gup(name, url) {
+        if (!url) url = location.href;
+        name = name.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]");
+        var regexS = "[\\?&]" + name + "=([^&#]*)";
+        var regex = new RegExp(regexS);
+        var results = regex.exec(url);
+        return results == null ? null : results[1];
     }
 
+    function getQuestions(teamname, type) {
+        $.ajax({
+            url: 'http://' + hostname + '/api/GetQuestionsForJudge/'+teamname+'/'+type,
+            type: "GET",
+            contentType: "application/json",
+            dataType: "json",
+            success: function (data) {
+                UpdateTable(data, "table");
+            },
+            error: function () {
+                alert("couldn't update table");
+            }
+
+        });
+
+    }
+   
+   
     function UpdateTable(data, tablename) {
         var table = document.getElementById(tablename);
         var tableHeaderRowCount = 1;

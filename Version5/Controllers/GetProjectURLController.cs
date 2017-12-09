@@ -20,7 +20,7 @@ namespace Version5.Controllers
             _context = context;
         }
         [HttpGet]
-        public List<Object> GetTblTeam()
+        public List<Object> GetQuestionsForJudge()
         {
             var collection = _context.TblTeam;
             List<Object> collectionObj = new List<object>();
