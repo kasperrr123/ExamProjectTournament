@@ -1,10 +1,17 @@
 ﻿$(document).ready(function () {
     var hostname = document.location.host;
+    // Getting teams for generating the schedule.
+    getTeamsForSchedule();
+    // First time getting logins under management.
+    getSpecificLogin();
+    // For every time the dropdown changes.
+    $("#dropdownCategory").change(function () {
+        getSpecificLogin();
+    });
 
-    var collectionOfTeams = getTeams();
 
-    function getTeams() {
-        var collectionOfTeams = [];
+    // Here the functions are.
+    function getTeamsForSchedule() {
         $.ajax({
             url: 'http://' + hostname + '/api/teams',
             type: "GET",
@@ -17,7 +24,36 @@
         });
 
     };
+    function getSpecificLogin() {
+        if ($("#dropdownCategory option:selected").index() == 0) {
+            $.ajax({
+                url: 'http://' + hostname + '/api/logins/management/301',
+                type: "GET",
+                contentType: "application/json",
+                dataType: "json",
+            }).then(function (fromServer) {
+                $('#manageLoginsTable').bootstrapTable("load", fromServer);
+                $('#manageLoginsTable').bootstrapTable({
+                    data: fromServer
+                });
+            });
+        } else {
+            $.ajax({
+                url: 'http://' + hostname + '/api/logins/management/355',
+                type: "GET",
+                contentType: "application/json",
+                dataType: "json",
+            }).then(function (fromServer) {
+                $('#manageLoginsTable').bootstrapTable("load", fromServer);
 
+            });
+        }
+        
+
+    };
+
+
+    // This handles the opening of the new window when Quesitonnaire option is clicked.
     var myWindow;
     $("#openEditQuestionnaire").click(function () {
         var size;

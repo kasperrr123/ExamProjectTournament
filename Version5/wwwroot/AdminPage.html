@@ -6,6 +6,8 @@
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/NavbarStyleSheet.css" />
+    <link rel="stylesheet" href="css/bootstrap-table.css" />
+    <link rel="stylesheet" href="css/AdminPage.css" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="https://rawgit.com/wenzhixin/bootstrap-table/master/src/bootstrap-table.js"></script>
@@ -27,7 +29,7 @@
         </div>
         <div id="myNavbar" class="collapse navbar-collapse">
 
-            <div id="loggedin"  class="nav navbar-header setLoggedInAs"></div>
+            <div id="loggedin" class="nav navbar-header setLoggedInAs"></div>
 
 
 
@@ -89,39 +91,26 @@
 
     <div class="flex-md-row-reverse">
         <div class="container-fluid">
-            <h2>Management</h2>
-            <select class="dropdown-header">
-                <option>Teams</option>
+            <h2>Manage logins</h2>
+            <select id="dropdownCategory" class="dropdown-header">
+                <option selected>Teams</option>
                 <option>Judges</option>
             </select>
         </div>
     </div>
 
     <div class="container-fluid">
-
-
-
-
         <div class="flex-md-row-reverse">
             <div>
-                <table class=" table table-responsive table-striped">
+                <table class=" table table-responsive table-striped" id="manageLoginsTable">
                     <thead>
                         <tr>
-                            <th>Team</th>
+                            <th data-field="fldUsername">Username</th>
+                            <th data-field="fldPassword">Password</th>
+                            <th data-field="fldRank">Rank</th>
+                            <th data-field="buttons"> Options</th>
                         </tr>
                     </thead>
-                    <tr>
-                        <td>Team 1</td>
-                    </tr>
-                    <tr>
-                        <td>Team 2</td>
-                    </tr>
-                    <tr>
-                        <td>Team 3</td>
-                    </tr>
-                    <tr>
-                        <td>Team 4</td>
-                    </tr>
                 </table>
             </div>
         </div>
