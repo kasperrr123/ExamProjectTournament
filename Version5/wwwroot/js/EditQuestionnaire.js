@@ -55,7 +55,7 @@ function getQuestions() {
         contentType: "application/json",
         dataType: "json",
     }).then(function (fromServer) {
-        alert(JSON.stringify(fromServer));
+                alert(JSON.stringify(fromServer));
 
         $('#tableInterview').bootstrapTable({
             data: fromServer
