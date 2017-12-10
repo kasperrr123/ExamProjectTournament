@@ -3,8 +3,6 @@
     checkLogin();
     // Just a variable holding the host string.
     var hostname = document.location.host;
-    // Getting teams for generating the schedule.
-    getTeamsForSchedule();
     // First time getting logins under management.
     getSpecificLogin();
     // For every time the dropdown changes.
@@ -14,19 +12,6 @@
 
 
     // Here the functions are.
-    function getTeamsForSchedule() {
-        $.ajax({
-            url: 'http://' + hostname + '/api/teams',
-            type: "GET",
-            contentType: "application/json",
-            dataType: "json",
-        }).then(function (fromServer) {
-            $('#table').bootstrapTable({
-                data: fromServer
-            });
-        });
-
-    };
     function getSpecificLogin() {
         if ($("#dropdownCategory option:selected").index() == 0) {
             $.ajax({
