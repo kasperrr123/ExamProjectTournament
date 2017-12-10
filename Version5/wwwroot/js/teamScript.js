@@ -1,4 +1,11 @@
-﻿function checkLogin() {
+﻿$(document).ready(function () {
+   
+    checkLogin();
+
+
+});
+
+function checkLogin() {
     if (document.cookie.length > 0) {
         var cookie = document.cookie;
         var rank = cookie.split("=")[1];
