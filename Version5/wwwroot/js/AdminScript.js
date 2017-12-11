@@ -20,6 +20,8 @@
                 contentType: "application/json",
                 dataType: "json",
             }).then(function (fromServer) {
+                var row = JSON.stringify(fromServer);
+                var obj = JSON.parse(row);
                 $('#manageLoginsTable').bootstrapTable("load", fromServer);
                 $('#manageLoginsTable').bootstrapTable({
                     data: fromServer
@@ -32,11 +34,12 @@
                 contentType: "application/json",
                 dataType: "json",
             }).then(function (fromServer) {
+                var row = JSON.stringify(fromServer);
+                var obj = JSON.parse(row);
                 $('#manageLoginsTable').bootstrapTable("load", fromServer);
-
             });
         }
-        
+
 
     };
     function checkLogin() {
@@ -56,7 +59,7 @@
 
     };
 
-
+ 
     // This handles the opening of the new window when Quesitonnaire option is clicked.
     var myWindow;
     $("#openEditQuestionnaire").click(function () {

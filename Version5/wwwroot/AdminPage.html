@@ -16,7 +16,7 @@
     <script type="text/javascript" src="js/ScheduleScript.js?n=1"></script>
     <script src="js/AdminScript.js?n=1"></script>
     <title>AdminPage</title>
-
+    
 </head>
 <body id="bodyid">
     <!--Navbar-->
@@ -34,7 +34,7 @@
             <div id="loggedin" class="nav navbar-header setLoggedInAs"></div>
             <div class="navbar-nav navbar-header navbar-right">
                 <content class="">
-                    <content class="active hideElementWhenLoggedIn" id="logoutbutton"><a href="#">Log out</a></content>
+                    <content class="active hideElementWhenLoggedIn" id="logoutbutton"><a href="#"><span class="glyphicon glyphicon-off"></span> Log out</a></content>
                 </content>
             </div>
             <div class="navbar-nav navbar-header navbar-right">
@@ -46,7 +46,7 @@
                             <li><a href="#">Manage tournaments</a></li>
                         </ul>
                     </content>
-                    <content class="active" id="openEditQuestionnaire"><a href="#"><span class="glyphicon glyphicon-home"></span> Questionnaire</a></content>
+                    <content class="active" id="openEditQuestionnaire"><a href="#"><span class="glyphicon glyphicon-home"></span> Questionnaire </a></content>
                 </ul>
             </div>
 
@@ -92,7 +92,7 @@
                 <option selected>Teams</option>
                 <option>Judges</option>
             </select>
-            <p>Double click on a user to gain access to settings</p>
+            <p>Click on the row you want to change</p>
         </div>
     </div>
     <!--Manage logins Table-->
@@ -100,12 +100,10 @@
         <div class="flex-md-row-reverse">
             <div>
                 <table class="table table-responsive table-striped" data-search="true" data-toggle="tooltip"
-                       title="Double click for settings" id="manageLoginsTable">
+                       title="Click to enter settings" id="manageLoginsTable">
                     <thead>
                         <tr class="danger">
                             <th data-field="fldUsername">Username</th>
-                            <th data-field="fldPassword">Password</th>
-                            <th data-field="fldRank">Rank</th>
                         </tr>
                     </thead>
                 </table>
@@ -116,7 +114,6 @@
         in the manage logins Table-->
     <div id="myModal" class="modal fade" role="dialog">
         <div class="modal-dialog">
-
             <!-- Modal content-->
             <div class="modal-content">
                 <div class="modal-header">
@@ -158,12 +155,11 @@
     <!--Modal for Entering password to show password-->
     <div id="EnterPasswordForShowingPassword" class="modal fade center" role="dialog">
         <div class="modal-dialog">
-
             <!-- Modal content-->
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Extra security, enter password to show password</h4>
+                    <h4 class="modal-title">Extra security, enter admin password to show password</h4>
                 </div>
                 <div class="modal-body">
                     <p>Enter password here</p>
@@ -180,7 +176,6 @@
     <!--Modal for showing password after gaining access-->
     <div id="ModalForShowingPassword" class="modal fade center" role="dialog">
         <div class="modal-dialog">
-
             <!-- Modal content-->
             <div class="modal-content">
                 <div class="modal-header">
@@ -197,5 +192,6 @@
 
         </div>
     </div>
+
 </body>
 </html>

@@ -1,5 +1,5 @@
 ﻿body {
-    background-color: #a1afad;
+    background-color: #005395;
 }
 
 
@@ -15,10 +15,12 @@
 
 .panel-footer {
     background-color: #a1afad;
+  
 }
 
 
 #footer {
+    color:black;
     text-align: center;
     vertical-align: middle;
     line-height: 30px;

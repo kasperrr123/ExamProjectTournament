@@ -1,10 +1,11 @@
-﻿$(document).ready(function () {
-    var hostname = document.location.host;
-    var selectedRow;
+﻿var hostname = document.location.host;
+var selectedRow;
 
+$(document).ready(function () {
+    
     // Double clicking a row inside the manage table. Opening user settings inside modal.
-    $("#manageLoginsTable").on('dbl-click-row.bs.table', function (row, element, field) {
-        var row = JSON.stringify(element);
+    $("#manageLoginsTable").on('click-row.bs.table', function (row, element, field) {
+        var row = JSON.stringify(element);  
         selectedRow = JSON.parse(row);
         $("#myModal").modal();
 
@@ -91,10 +92,9 @@
     });
     // Showing password.
     $("#showBtn").click(function () {
-     
+
 
         var typedPassword = $("#password").val() + "," + selectedRow.fldUsername;
-        alert(typedPassword);
         $.ajax({
             url: 'http://' + hostname + '/api/ValidateLogin/showEncryptedPassword/' + typedPassword,
             type: "GET",
@@ -117,6 +117,3 @@
     });
 
 });
-
-
-
