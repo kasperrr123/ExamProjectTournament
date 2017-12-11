@@ -1,0 +1,65 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/CreateTournament.css" />
+    <script src="js/CreateTournament.js?n=1"></script>
+
+    <title>Create Tournament</title>
+</head>
+<body>
+    <!--Navbar-->
+    <nav id="MainNavBar" class="navbar navbar-inverse">
+        <div class="navbar-header">
+            <h1 class="nav navbar-header alignHorizontal"><a>Create tournament</a></h1>
+        </div>
+
+    </nav>
+
+    <!--Tournament Label-->
+    <div class="container-fluid">
+        <h3>Tournament</h3>
+    </div>
+    <!--Fields and stuff-->
+    <div class="container-fluid">
+        <div class="flex-md-row">
+            <div>
+                <table class="table table-responsive table-striped" id="tableReport">
+                    <thead>
+                        <tr>
+                            <th>Name of tournament</th>
+                            <th>Start date</th>
+                            <th>End date</th>
+                            <th>Address</th>
+                        </tr>
+                    </thead>
+                    <tr>
+                        <td><input type="text" id="name" /></td>
+                        <td><input type="datetime-local" id="startDate"/></td>
+                        <td><input type="datetime-local" id="endDate" /></td>
+                        <td><input type="text" id="address" /></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+    <!--Button inside a well-->
+    <div class="flex-md-row" id="wellWithButton">
+        <div class="col-md-12">
+            <div class="well">
+                <div class="text-center">
+                    <button type="button" class="btn btn-success button_save" id="createTournamentBtn">Create tournament</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+
+</body>
+</html>

@@ -1,4 +1,10 @@
-﻿
+﻿$(document).ready(function () {
+   
+    checkLogin();
+
+
+});
+
 function checkLogin() {
     if (document.cookie.length > 0) {
         var cookie = document.cookie;
@@ -11,7 +17,7 @@ function checkLogin() {
         }
     } else {
         $('#bodyid').get(0).hidden = true;
-        alert("Not allowed");
+        alert("You have to be logged in");
     }
 
 }

@@ -1,23 +1,63 @@
 ﻿$(document).ready(function () {
+    // checking if there's a cookie that allows the host to gain access to this site.
+    checkLogin();
+    // Just a variable holding the host string.
     var hostname = document.location.host;
+    // First time getting logins under management.
+    getSpecificLogin();
+    // For every time the dropdown changes.
+    $("#dropdownCategory").change(function () {
+        getSpecificLogin();
+    });
 
-    var collectionOfTeams = getTeams();
 
-    function getTeams() {
-        var collectionOfTeams = [];
-        $.ajax({
-            url: 'http://' + hostname + '/api/teams',
-            type: "GET",
-            contentType: "application/json",
-            dataType: "json",
-        }).then(function (fromServer) {
-            $('#table').bootstrapTable({
-                data: fromServer
+    // Here the functions are.
+    function getSpecificLogin() {
+        if ($("#dropdownCategory option:selected").index() == 0) {
+            $.ajax({
+                url: 'http://' + hostname + '/api/logins/management/301',
+                type: "GET",
+                contentType: "application/json",
+                dataType: "json",
+            }).then(function (fromServer) {
+                $('#manageLoginsTable').bootstrapTable("load", fromServer);
+                $('#manageLoginsTable').bootstrapTable({
+                    data: fromServer
+                });
             });
-        });
+        } else {
+            $.ajax({
+                url: 'http://' + hostname + '/api/logins/management/355',
+                type: "GET",
+                contentType: "application/json",
+                dataType: "json",
+            }).then(function (fromServer) {
+                $('#manageLoginsTable').bootstrapTable("load", fromServer);
+
+            });
+        }
+        
+
+    };
+    function checkLogin() {
+        if (document.cookie.length > 0) {
+            var cookie = document.cookie;
+            var rank = cookie.split("=")[1];
+            if (rank == "395") {
+
+            } else {
+                $('#bodyid').get(0).hidden = true;
+                alert("Not allowed");
+            }
+        } else {
+            $('#bodyid').get(0).hidden = true;
+            alert("You have to be logged in");
+        }
 
     };
 
+
+    // This handles the opening of the new window when Quesitonnaire option is clicked.
     var myWindow;
     $("#openEditQuestionnaire").click(function () {
         var size;
