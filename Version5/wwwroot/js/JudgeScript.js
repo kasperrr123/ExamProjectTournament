@@ -1,4 +1,5 @@
 ﻿function OpenReportPage(teamname) {
+    var hostname = document.location.host;
     var size;
     if (screen.height <= 768 && screen.width <= 1366) {
         size = "height=" + (screen.height - 125) + "," + "width=" + (screen.width - 100);
@@ -8,9 +9,10 @@
 
     }
 
-    mywindow = window.open('http://localhost:55655/AnswerQuestionairePage.html?Teamname=' + teamname.id +'&type=report', "_blank", size);
+    mywindow = window.open('http://'+hostname+'/AnswerQuestionairePage.html?Teamname=' + teamname.id +'&type=report', "_blank", size);
 }
 function OpenInterviewPage(teamname) {
+    var hostname = document.location.host;
     var size;
     if (screen.height <= 768 && screen.width <= 1366) {
         size = "height=" + (screen.height - 125) + "," + "width=" + (screen.width - 100);
@@ -19,7 +21,7 @@ function OpenInterviewPage(teamname) {
         size = "height=" + (screen.height - 250) + "," + "width=" + (screen.width - 850);
 
     }
-    mywindow = window.open('http://localhost:55655/AnswerQuestionairePage.html?Teamname=' + teamname.id + '&type=interview', "_blank", size);
+    mywindow = window.open('http://' + hostname +'/AnswerQuestionairePage.html?Teamname=' + teamname.id + '&type=interview', "_blank", size);
 }
 $(document).ready(function () {
 
