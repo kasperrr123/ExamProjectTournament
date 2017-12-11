@@ -19,10 +19,12 @@
 
 #logoutbutton {
     margin-top: 0.75%;
+    /*background-color:gray;*/
 }
 
 #logindropdown {
     margin-top: 0.75%;
+    background-color:gray;
 }
 
 .navbar-toggle {

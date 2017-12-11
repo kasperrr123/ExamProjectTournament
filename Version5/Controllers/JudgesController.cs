@@ -29,14 +29,14 @@ namespace Version5.Controllers
 
         // GET: api/Judges/5
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetTblJudge([FromRoute] long id)
+        public async Task<IActionResult> GetTblJudge([FromRoute] string id)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            var tblJudge = await _context.TblJudge.SingleOrDefaultAsync(m => m.FldJudgeId == id);
+            var tblJudge = await _context.TblJudge.SingleOrDefaultAsync(m => m.FldJudgeLetter == id);
 
             if (tblJudge == null)
             {
@@ -48,14 +48,14 @@ namespace Version5.Controllers
 
         // PUT: api/Judges/5
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutTblJudge([FromRoute] long id, [FromBody] TblJudge tblJudge)
+        public async Task<IActionResult> PutTblJudge([FromRoute] string id, [FromBody] TblJudge tblJudge)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != tblJudge.FldJudgeId)
+            if (id != tblJudge.FldJudgeLetter)
             {
                 return BadRequest();
             }
@@ -91,21 +91,35 @@ namespace Version5.Controllers
             }
 
             _context.TblJudge.Add(tblJudge);
-            await _context.SaveChangesAsync();
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateException)
+            {
+                if (TblJudgeExists(tblJudge.FldJudgeLetter))
+                {
+                    return new StatusCodeResult(StatusCodes.Status409Conflict);
+                }
+                else
+                {
+                    throw;
+                }
+            }
 
-            return CreatedAtAction("GetTblJudge", new { id = tblJudge.FldJudgeId }, tblJudge);
+            return CreatedAtAction("GetTblJudge", new { id = tblJudge.FldJudgeLetter }, tblJudge);
         }
 
         // DELETE: api/Judges/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteTblJudge([FromRoute] long id)
+        public async Task<IActionResult> DeleteTblJudge([FromRoute] string id)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            var tblJudge = await _context.TblJudge.SingleOrDefaultAsync(m => m.FldJudgeId == id);
+            var tblJudge = await _context.TblJudge.SingleOrDefaultAsync(m => m.FldJudgeLetter == id);
             if (tblJudge == null)
             {
                 return NotFound();
@@ -117,9 +131,9 @@ namespace Version5.Controllers
             return Ok(tblJudge);
         }
 
-        private bool TblJudgeExists(long id)
+        private bool TblJudgeExists(string id)
         {
-            return _context.TblJudge.Any(e => e.FldJudgeId == id);
+            return _context.TblJudge.Any(e => e.FldJudgeLetter == id);
         }
     }
 }

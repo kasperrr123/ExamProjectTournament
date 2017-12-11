@@ -1,28 +1,30 @@
 ﻿var hostname = document.location.host;
-
+var questionids = [];
+var teamname = gup('Teamname');
+var type = gup('type');
+var Questionaireid;
+function gup(name, url) {
+    if (!url) url = location.href;
+    name = name.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]");
+    var regexS = "[\\?&]" + name + "=([^&#]*)";
+    var regex = new RegExp(regexS);
+    var results = regex.exec(url);
+    return results == null ? null : results[1];
+}
 $(document).ready(function () {
-    var teamname = gup('Teamname');
-    var type = gup('type')
-    teamname = decodeURI(teamname)
-    console.log(teamname + " " + type);
-    getQuestions(teamname, type);
 
-    function gup(name, url) {
-        if (!url) url = location.href;
-        name = name.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]");
-        var regexS = "[\\?&]" + name + "=([^&#]*)";
-        var regex = new RegExp(regexS);
-        var results = regex.exec(url);
-        return results == null ? null : results[1];
-    }
+    teamname = decodeURI(teamname);
+    getQuestions(teamname, type);
 
     function getQuestions(teamname, type) {
         $.ajax({
-            url: 'http://' + hostname + '/api/GetQuestionsForJudge/'+teamname+'/'+type,
+            url: 'http://' + hostname + '/api/GetQuestionsForJudge/' + teamname + '/' + type,
             type: "GET",
             contentType: "application/json",
             dataType: "json",
             success: function (data) {
+                Questionaireid = data[0].fldQuestionnaireId;
+
                 UpdateTable(data, "table");
             },
             error: function () {
@@ -32,8 +34,8 @@ $(document).ready(function () {
         });
 
     }
-   
-   
+
+
     function UpdateTable(data, tablename) {
         var table = document.getElementById(tablename);
         var tableHeaderRowCount = 1;
@@ -41,6 +43,11 @@ $(document).ready(function () {
         for (var r = tableHeaderRowCount; r < rowCount; r++) {
             table.deleteRow(tableHeaderRowCount);
         }
+        var LocalQuestions = [];
+        for (var i = 0; i < data.length; i++) {
+            LocalQuestions[i] = [data[i].fldQuestionsId];
+        }
+        questionids = LocalQuestions;
         for (var i = 0; i < data.length; i++) {
 
             // Create an empty <tr> element and add it to the 1st position of the table:
@@ -53,11 +60,63 @@ $(document).ready(function () {
             cell2.innerHTML = data[i].fldModifier;
 
             var cell3 = row.insertCell(2);
-            cell3.innerHTML = '<textarea rows="4" cols="50"/>';
+            cell3.innerHTML = '<input type="text" onkeypress="return event.charCode >= 48 && event.charCode <= 57"></input>';
 
         }
 
     }
+    $("#giveAnswer").click(function () {
+        getJudgeLetter();
+
+
+    });
+    function getJudgeLetter() {
+        var x = document.getElementById("table").rows.length;
+
+        var email = document.cookie.split("=")[0];
+        var judgeletter;
+     
+        alert('http://' + hostname + '/api/GetQuestionsForJudge/' + email);
+        $.ajax({
+            url: 'http://' + hostname + '/api/GetQuestionsForJudge/' + email,
+            method: 'GET',
+            contentType: 'application/json',
+            dataType: 'json',
+            success: function (data) {
+                judgeletter = data.fldJudgeLetter;
+                
+                for (var i = 0; i < x; i++) {
+                    var score = document.getElementById("table").rows[i + 1].cells[2].children[0].value;
+                    var currentquestionid = parseInt(questionids[i]);
+
+                    var dataToSend = {
+                        FldTeamName: teamname,
+                        FldQuestionsId: currentquestionid,
+                        FldJudgeLetter: judgeletter,
+                        FldPoint: score
+                    }
+                    alert(JSON.stringify(data));
+                    $.ajax({
+                        url: 'http://' + hostname + '/api/answers',
+                        method: 'POST',
+                        contentType: "application/json",
+                        dataType:'json',
+                        data: JSON.stringify(dataToSend),
+                        success: function () {
+                           
+                        },
+                        error: function () {
+                            alert("couldn't update table");
+                        }
+                    })
+                }
+            },
+            error: function () {
+                alert("Error Getting JudgeLetter");
+            }
+        })
+    }
+
 });
 
 

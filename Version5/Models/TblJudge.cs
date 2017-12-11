@@ -10,9 +10,8 @@ namespace Version5.Models
             TblAnswer = new HashSet<TblAnswer>();
         }
 
-        public long FldJudgeId { get; set; }
-        public int? FldTournamentId { get; set; }
         public string FldJudgeLetter { get; set; }
+        public int? FldTournamentId { get; set; }
         public string FldUsername { get; set; }
 
         public TblTournament FldTournament { get; set; }

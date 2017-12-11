@@ -13,7 +13,7 @@ namespace Version5.Controllers
     //type
     //need to return a list of questions.
     [Produces("application/json")]
-    [Route("api/GetQuestionsForJudge/{teamName}/{type}")]
+   
     public class GetQuestionsForJudgeController : Controller
     {
         private readonly db_examprojecttournamentContext _context;
@@ -22,7 +22,7 @@ namespace Version5.Controllers
         {
             _context = context;
         }
-
+        [Route("api/GetQuestionsForJudge/{teamName}/{type}")]
         [HttpGet]
         public List<Object> GET(string teamName, string type)
         {
@@ -35,7 +35,7 @@ namespace Version5.Controllers
                 var questions = _context.TblQuestions.Where(n => n.FldQuestionnaireId == questionnaireID).ToList();
                 foreach (var item in questions)
                 {
-                    returnlist.Add(new TblQuestions { FldQuestion= item.FldQuestion,FldModifier= item.FldModifier});
+                    returnlist.Add(new TblQuestions { FldQuestionsId =item.FldQuestionsId, FldQuestion= item.FldQuestion,FldModifier= item.FldModifier, FldQuestionnaireId = questionnaireID});
                 }
 
                 return returnlist;
@@ -48,6 +48,17 @@ namespace Version5.Controllers
                 return gotcalled;
             }
         
+        }
+        [Route("api/GetQuestionsForJudge/{username}")]
+        public TblJudge GET(string username)
+        {
+            string judgeletter = _context.TblJudge.Where(n => n.FldUsername == username).First().FldJudgeLetter;
+            var returnletter = new TblJudge
+            {
+                FldJudgeLetter = judgeletter
+            };
+            return returnletter;
+
         }
     }
 }

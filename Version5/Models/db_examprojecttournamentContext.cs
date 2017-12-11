@@ -16,7 +16,7 @@ namespace Version5.Models
         public virtual DbSet<TblTopic> TblTopic { get; set; }
         public virtual DbSet<TblTournament> TblTournament { get; set; }
 
-        public db_examprojecttournamentContext(DbContextOptions<db_examprojecttournamentContext> options) : base(options)
+        public db_examprojecttournamentContext(DbContextOptions<db_examprojecttournamentContext> options):base(options)
         {
 
         }
@@ -31,11 +31,14 @@ namespace Version5.Models
 
                 entity.Property(e => e.FldAnswerId).HasColumnName("fldAnswerID");
 
-                entity.Property(e => e.FldAnswer)
-                    .HasColumnName("fldAnswer")
+                entity.Property(e => e.FldJudgeLetter)
+                    .HasColumnName("fldJudgeLetter")
+                    .HasMaxLength(1)
                     .IsUnicode(false);
 
-                entity.Property(e => e.FldJudgeId).HasColumnName("fldJudgeID");
+                entity.Property(e => e.FldPoint)
+                    .HasColumnName("fldPoint")
+                    .IsUnicode(false);
 
                 entity.Property(e => e.FldQuestionsId).HasColumnName("fldQuestionsID");
 
@@ -44,39 +47,33 @@ namespace Version5.Models
                     .HasMaxLength(150)
                     .IsUnicode(false);
 
-                entity.HasOne(d => d.FldJudge)
+                entity.HasOne(d => d.FldJudgeLetterNavigation)
                     .WithMany(p => p.TblAnswer)
-                    .HasForeignKey(d => d.FldJudgeId)
-                    .HasConstraintName("FK__tblAnswer__fldJu__2B3F6F97");
+                    .HasForeignKey(d => d.FldJudgeLetter)
+                    .HasConstraintName("FK__tblAnswer__fldJu__2A4B4B5E");
 
                 entity.HasOne(d => d.FldQuestions)
                     .WithMany(p => p.TblAnswer)
                     .HasForeignKey(d => d.FldQuestionsId)
-                    .HasConstraintName("FK__tblAnswer__fldQu__2A4B4B5E");
+                    .HasConstraintName("FK__tblAnswer__fldQu__29572725");
 
                 entity.HasOne(d => d.FldTeamNameNavigation)
                     .WithMany(p => p.TblAnswer)
                     .HasForeignKey(d => d.FldTeamName)
-                    .HasConstraintName("FK__tblAnswer__fldTe__29572725");
+                    .HasConstraintName("FK__tblAnswer__fldTe__286302EC");
             });
 
             modelBuilder.Entity<TblJudge>(entity =>
             {
-                entity.HasKey(e => e.FldJudgeId);
+                entity.HasKey(e => e.FldJudgeLetter);
 
                 entity.ToTable("tblJudge");
 
-                entity.HasIndex(e => e.FldJudgeLetter)
-                    .HasName("UQ__tblJudge__B0CFFB7236760E10")
-                    .IsUnique();
-
-                entity.Property(e => e.FldJudgeId).HasColumnName("fldJudgeID");
-
                 entity.Property(e => e.FldJudgeLetter)
-                    .IsRequired()
                     .HasColumnName("fldJudgeLetter")
                     .HasMaxLength(1)
-                    .IsUnicode(false);
+                    .IsUnicode(false)
+                    .ValueGeneratedNever();
 
                 entity.Property(e => e.FldTournamentId).HasColumnName("fldTournamentID");
 
@@ -88,12 +85,12 @@ namespace Version5.Models
                 entity.HasOne(d => d.FldTournament)
                     .WithMany(p => p.TblJudge)
                     .HasForeignKey(d => d.FldTournamentId)
-                    .HasConstraintName("FK__tblJudge__fldTou__25869641");
+                    .HasConstraintName("FK__tblJudge__fldTou__24927208");
 
                 entity.HasOne(d => d.FldUsernameNavigation)
                     .WithMany(p => p.TblJudge)
                     .HasForeignKey(d => d.FldUsername)
-                    .HasConstraintName("FK__tblJudge__fldUse__267ABA7A");
+                    .HasConstraintName("FK__tblJudge__fldUse__25869641");
             });
 
             modelBuilder.Entity<TblLogin>(entity =>
