@@ -8,15 +8,6 @@ $(document).ready(function () {
 
     });
 
-    //$("#closeBtn").click(function () {
-    //    $("ModalForShowingSuccessMsg").modal("hide");
-    //    document.location.pathname = "adminPage.html";
-
-    //});
-
-
-
-
 });
 
 
@@ -27,19 +18,23 @@ function postTournament() {
         fldEndDate: $("#endDate").val(),
         fldAddress: $("#address").val()
     }
-    $.ajax({
-        url: 'http://' + hostname + '/api/tournaments',
-        type: "POST",
-        contentType: "application/json",
-        dataType: "json",
-        data: JSON.stringify(dataObj),
-        success: function () {
-            $("#ModalForShowingSuccessMsg").modal();
-            $('#ModalForShowingSuccessMsg').on('hidden.bs.modal', function () {
-                document.location.pathname = "adminPage.html";
-            })
-        }
-    });
+    if (dataObj.fldAddress != "" && dataObj.fldStartDate != "" && dataObj.fldEndDate != "" && dataObj.fldTournamentName != "") {
+        $.ajax({
+            url: 'http://' + hostname + '/api/tournaments',
+            type: "POST",
+            contentType: "application/json",
+            dataType: "json",
+            data: JSON.stringify(dataObj),
+            success: function () {
+                $("#ModalForShowingSuccessMsg").modal();
+                $('#ModalForShowingSuccessMsg').on('hidden.bs.modal', function () {
+                    document.location.pathname = "adminPage.html";
+                })
+            }
+        });
+    } else {
+        alert("You have to fill out every field");
+    }
 };
 
 
