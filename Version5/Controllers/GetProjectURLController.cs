@@ -44,14 +44,17 @@ namespace Version5.Controllers
 
         [HttpGet]
         [Route("api/GetProjectURL/{username}")]
-        public string GetReportForTeam(string username)
+        public Object GetReportForTeam(string username)
         {
             var projectName = _context.TblTeam.Where(n => n.FldUsername == username).First().FldProjectName;
             var filepath = _context.TblProject.Find(projectName).FldProjectFilePath;
 
+            var obj = new
+            {
+                fldPathName = filepath,
+            };
 
-
-            return filepath;
+            return obj;
         }
 
         //    [HttpGet("{id}")]

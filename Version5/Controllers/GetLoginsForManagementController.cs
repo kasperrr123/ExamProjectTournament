@@ -24,12 +24,19 @@ namespace Version5.Controllers
         // GET: api/GetLoginsForManagement/Teams
         [Route("api/Logins/management/{rank}")]
         [HttpGet]
-        public IEnumerable<TblLogin> GetTeams(string rank)
+        public List<TblTeam> GetTeams(string rank)
         {
+            var email = _context.TblLogin.Where(n => n.FldRank == rank).Select(n=>n.FldUsername);
+            List<TblTeam> toReturn = new List<TblTeam>();
+            foreach (var item in email)
+            {
+                toReturn.Add(_context.TblTeam.Where(n => n.FldUsername == item).First());
 
-            return _context.TblLogin.Where(n => n.FldRank == rank);
+            }
+            return toReturn;
 
         }
+     
 
 
         // PUT: api/GetLoginsForManagement/5

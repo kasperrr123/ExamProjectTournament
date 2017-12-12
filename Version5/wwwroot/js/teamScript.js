@@ -30,6 +30,23 @@
 
 
     })
+
+    // Opening report.
+    $("#openReport").click(function () {
+        $.ajax({
+            url: 'http://' + hostname + '/api/GetProjectURL/' + email,
+            method: 'GET',
+            contentType: 'application/json',
+            success: function (data) {
+                document.location.pathname = data.fldPathName;
+            },
+            error: function () {
+                alert("Error getting pathname");
+            }
+
+        })
+
+    });
 });
 
     function checkLogin() {
