@@ -10,8 +10,7 @@ namespace Version5
     public class Startup
     {
         public Startup(IConfiguration configuration)
-        {
-            
+        {   
             Configuration = configuration;
         }
 
@@ -21,9 +20,9 @@ namespace Version5
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
-            //var connection = "Server = (local) ; Database = db_examprojecttournament; Trusted_Connection = True;";
+            var connection = "Server = (local) ; Database = db_examprojecttournament; Trusted_Connection = True;";
             //Server=tcp:kjdcyoungenterprices.database.windows.net,1433;Initial Catalog=db_examProjectTournament;Persist Security Info=False;User ID=kjdc;Password=David123;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;
-            var connection = "Server=tcp:kjdcyoungenterprices.database.windows.net,1433;Initial Catalog=db_examProjectTournament;Persist Security Info=False;User ID=kjdc;Password=David123;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
+            //var connection = "Server=tcp:kjdcyoungenterprices.database.windows.net,1433;Initial Catalog=db_examProjectTournament;Persist Security Info=False;User ID=kjdc;Password=David123;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
             services.AddDbContext<db_examprojecttournamentContext>(options => options.UseSqlServer(connection));
            
         }

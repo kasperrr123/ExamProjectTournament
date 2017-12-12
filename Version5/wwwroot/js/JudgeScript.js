@@ -1,36 +1,5 @@
 ﻿
-
-
-function OpenReportPage(teamname) {
-    var hostname = document.location.host;
-
-    var size;
-    if (screen.height <= 768 && screen.width <= 1366) {
-        size = "height=" + (screen.height - 125) + "," + "width=" + (screen.width - 100);
-
-    } else {
-        size = "height=" + (screen.height - 250) + "," + "width=" + (screen.width - 850);
-
-    }
-
-    mywindow = window.open('http://'+hostname+'/AnswerQuestionairePage.html?Teamname=' + teamname.id + '&type=report', "_blank", size);
-}
-function OpenInterviewPage(teamname) {
-    var hostname = document.location.host;
-
-    var size;
-    if (screen.height <= 768 && screen.width <= 1366) {
-        size = "height=" + (screen.height - 125) + "," + "width=" + (screen.width - 100);
-
-    } else {
-        size = "height=" + (screen.height - 250) + "," + "width=" + (screen.width - 850);
-
-    }
-    mywindow = window.open('http://'+hostname+'/AnswerQuestionairePage.html?Teamname=' + teamname.id + '&type=interview', "_blank", size);
-}
 $(document).ready(function () {
-    checkLogin();
-   
     var hostname = document.location.host;
 
     $.ajax({
@@ -110,23 +79,50 @@ $(document).ready(function () {
 
 
     }
-    function checkLogin() {
-        if (document.cookie.length > 0) {
-            var cookie = document.cookie;
-            var rank = cookie.split("=")[1];
-            if (rank == "355" || rank == "395") {
 
-            } else {
-                $('#bodyid').get(0).hidden = true;
-                alert("Not allowed");
-            }
+});
+
+function checkLogin() {
+    if (document.cookie.length > 0) {
+        var cookie = document.cookie;
+        var rank = cookie.split("=")[1];
+        if (rank == "355" || rank == "395") {
+
         } else {
             $('#bodyid').get(0).hidden = true;
-            alert("You have to be logged in");
+            alert("Not allowed");
         }
-
+    } else {
+        $('#bodyid').get(0).hidden = true;
+        alert("You have to be logged in");
     }
 
 }
 
-);
+function OpenReportPage(teamname) {
+    var hostname = document.location.host;
+
+    var size;
+    if (screen.height <= 768 && screen.width <= 1366) {
+        size = "height=" + (screen.height - 125) + "," + "width=" + (screen.width - 100);
+
+    } else {
+        size = "height=" + (screen.height - 250) + "," + "width=" + (screen.width - 850);
+
+    }
+
+    mywindow = window.open('http://' + hostname + '/AnswerQuestionairePage.html?Teamname=' + teamname.id + '&type=report', "_blank", size);
+}
+function OpenInterviewPage(teamname) {
+    var hostname = document.location.host;
+
+    var size;
+    if (screen.height <= 768 && screen.width <= 1366) {
+        size = "height=" + (screen.height - 125) + "," + "width=" + (screen.width - 100);
+
+    } else {
+        size = "height=" + (screen.height - 250) + "," + "width=" + (screen.width - 850);
+
+    }
+    mywindow = window.open('http://' + hostname + '/AnswerQuestionairePage.html?Teamname=' + teamname.id + '&type=interview', "_blank", size);
+}

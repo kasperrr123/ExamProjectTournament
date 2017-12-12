@@ -1,6 +1,6 @@
 ﻿$(document).ready(function () {
     // checking if there's a cookie that allows the host to gain access to this site.
-    checkLogin();
+    //checkLogin();
     // Just a variable holding the host string.
     var hostname = document.location.host;
     // First time getting logins under management.
@@ -42,24 +42,8 @@
 
 
     };
-    function checkLogin() {
-        if (document.cookie.length > 0) {
-            var cookie = document.cookie;
-            var rank = cookie.split("=")[1];
-            if (rank == "395") {
 
-            } else {
-                $('#bodyid').get(0).hidden = true;
-                alert("Not allowed");
-            }
-        } else {
-            $('#bodyid').get(0).hidden = true;
-            alert("You have to be logged in");
-        }
 
-    };
-
- 
     // This handles the opening of the new window when Quesitonnaire option is clicked.
     var myWindow;
     $("#openEditQuestionnaire").click(function () {
@@ -79,9 +63,22 @@
 
 
 
+function checkLogin() {
+    if (document.cookie.length > 0) {
+        var cookie = document.cookie;
+        var rank = cookie.split("=")[1];
+        if (rank == "395") {
 
+        } else {
+            $('#bodyid').get(0).hidden = true;
+            alert("Not allowed");
+        }
+    } else {
+        $('#bodyid').get(0).hidden = true;
+        alert("You have to be logged in");
+    }
 
-
+};
 
 
 
