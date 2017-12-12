@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="css/NavbarStyleSheet.css" />
     <link rel="stylesheet" href="css/bootstrap-table.css" />
     <link rel="stylesheet" href="css/AdminPage.css" />
+    <link rel="stylesheet" href="css/SchedueleStyleSheet.css" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="https://rawgit.com/wenzhixin/bootstrap-table/master/src/bootstrap-table.js"></script>
@@ -16,7 +17,7 @@
     <script type="text/javascript" src="js/ScheduleScript.js?n=1"></script>
     <script src="js/AdminScript.js?n=1"></script>
     <title>AdminPage</title>
-    
+
 </head>
 <body id="bodyid" onload="checkLogin()">
     <!--Navbar-->
@@ -60,27 +61,9 @@
     </div>
     <!--Schedule Tabel-->
     <div class="container-fluid">
-        <div class="flex-md-row">
+        <div id="scheduleContainer" class="container-fluid">
             <div>
-                <table class="table table-responsive table-striped" id="table">
-                    <thead>
-                        <tr>
-                            <th>Time</th>
-                            <th data-field="fldTeamName">Teams</th>
-                            <th data-field="judgeb">B</th>
-                            <th data-field="judgec">C</th>
-                            <th data-field="judged">D</th>
-                            <th data-field="judgee">E</th>
-                            <th data-field="judgef">F</th>
-                            <th data-field="judgeg">G</th>
-                            <th data-field="judgeh">H</th>
-                            <th data-field="judgei">I</th>
-                            <th data-field="judgej">J</th>
-                            <th data-field="judgek">K</th>
-                            <th data-field="judgel">L</th>
-                        </tr>
-                    </thead>
-                </table>
+                <iframe id="Schedule" frameborder="1" scrolling="yes" src="https://onedrive.live.com/embed?resid=54EC7FFF609A84F%215250&authkey=%21ABQUU5WyweHp0fk&em=2&wdAllowInteractivity=False&ActiveCell='Ark1'!B3&wdHideHeaders=True&wdDownloadButton=True&wdInConfigurator=True"></iframe>
             </div>
         </div>
     </div>
