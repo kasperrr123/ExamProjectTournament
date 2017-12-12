@@ -2,7 +2,7 @@
     var hostname = document.location.host;
     retrievingPlaceAndTimeData();
 
-    $("#myCarousel").carousel({ interval: 5000 });
+    $("#myCarousel").carousel({ interval: 3000 });
     $("#myCarousel").carousel({ pause: false });
 
 
