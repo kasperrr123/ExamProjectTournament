@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore;
 namespace Version5.Controllers
 {
     [Produces("application/json")]
-    [Route("api/GetProjectURL")]
+    
     public class GetProjectURLController : Controller
     {
         private readonly db_examprojecttournamentContext _context;
@@ -20,7 +20,8 @@ namespace Version5.Controllers
             _context = context;
         }
         [HttpGet]
-        public List<Object> GetQuestionsForJudge()
+        [Route("api/GetProjectURL")]
+        public List<Object> GetReportsForJudge()
         {
             var collection = _context.TblTeam;
             List<Object> collectionObj = new List<object>();
@@ -39,6 +40,18 @@ namespace Version5.Controllers
 
 
             return collectionObj;
+        }
+
+        [HttpGet]
+        [Route("api/GetProjectURL/{username}")]
+        public string GetReportForTeam(string username)
+        {
+            var projectName = _context.TblTeam.Where(n => n.FldUsername == username).First().FldProjectName;
+            var filepath = _context.TblProject.Find(projectName).FldProjectFilePath;
+
+
+
+            return filepath;
         }
 
         //    [HttpGet("{id}")]
