@@ -1,14 +1,88 @@
 ﻿var hostname = document.location.host;
+var reportQuestionids = [];
+var interviewQuestionids = [];
 
 $(document).ready(function () {
-
     getQuestions();
     $("#dropdown").change(function () {
         getQuestions();
     });
 
-    
+    $("#UpdateReportQuestionButton").click(function () {
+        var x = document.getElementById("tableReport").rows.length - 1;
 
+        for (var i = 0; i < x; i++) {
+            var changes = document.getElementById("tableReport").rows[i + 1].cells[2].children[0].value;
+            var modifier = document.getElementById("tableReport").rows[i + 1].cells[1].innerHTML;
+            var Questionaireid = getQuestionaireID("report");
+            alert(changes);
+            alert(modifier);
+            alert(Questionaireid);
+            if (changes != "") {
+                var currentquestionid = parseInt(reportQuestionids[i]);
+                var dataToSend = {
+                    fldQuestionsId: currentquestionid,
+                    fldQuestion: changes,
+                    fldModifier: modifier,
+                    fldQuestionnaireId:Questionaireid
+                }
+                $.ajax({
+                    url: 'http://' + hostname + '/api/questions/' + currentquestionid,
+                    method: 'PUT',
+                    contentType: "application/json",
+                    dataType: 'json',
+                    async: false,
+                    data: JSON.stringify(dataToSend),
+                    success: function () {
+                        alert("successfully Updated Question");
+
+                    },
+                    error: function () {
+                        alert("couldn't update table");
+                    }
+                })
+            }
+
+        }
+    })
+
+    function getQuestionaireID(type) {
+        var topic = $("#dropdown").val();
+        if (type == "report") {
+            switch (topic) {
+                case 'Business & Service':
+                    return id = 1;
+
+                case 'Science & Technology':
+                    return id = 2;
+
+                case 'Trade & Skills':
+                    return id = 3;
+
+                case 'Society & Globalization':
+                    return id = 4;
+
+                default:
+            }
+        } else if (type == "interview") {
+            switch (topic) {
+                case 'Business & Service':
+                    return id = 5;
+
+                case 'Science & Technology':
+                    return id = 6;
+
+                case 'Trade & Skills':
+                    return id = 7;
+
+                case 'Society & Globalization':
+                    return id = 8;
+
+                default:
+            }
+        }
+
+    }
 
 
 
@@ -41,6 +115,11 @@ $(document).ready(function () {
             dataType: "json",
             success: function (data) {
                 UpdateTable(data, "tableReport");
+                var LocalQuestions = [];
+                for (var i = 0; i < data.length; i++) {
+                    LocalQuestions[i] = [data[i].fldQuestionsId];
+                }
+                reportQuestionids = LocalQuestions;
             },
             error: function () {
                 alert("couldn't update table");
@@ -55,6 +134,11 @@ $(document).ready(function () {
             dataType: "json",
             success: function (data) {
                 UpdateTable(data, "tableInterview");
+                var LocalQuestions = [];
+                for (var i = 0; i < data.length; i++) {
+                    LocalQuestions[i] = [data[i].fldQuestionsId];
+                }
+                interviewQuestionids = LocalQuestions;
             },
             error: function () {
                 alert("couldn't update table");
