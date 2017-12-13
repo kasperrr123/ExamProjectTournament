@@ -115,8 +115,6 @@ $(document).ready(function () {
 
     }
 
-
-
     function getQuestions() {
         var topic = $("#dropdown").val();
         var id, interviewID;

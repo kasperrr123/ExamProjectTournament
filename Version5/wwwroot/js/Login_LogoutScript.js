@@ -94,15 +94,13 @@
 
 function ErrorMessageLogin(message) {
     document.getElementById("ErrorLoginBox").innerHTML = message + '<span class="closebtn" onclick="CloseX(this)">&times;</span>'
-
     $("#ErrorLoginBox").fadeTo(100, 0.1).fadeTo(100, 1.0);
     $("#ErrorLoginBox").show();
-
-    function CloseX(button) {
-        button.parentElement.style.display = 'none';
-    }
 }
 
+function CloseX(button) {
+    button.parentElement.style.display = 'none';
+}
 
 function isCookieValid() {
     console.log(document.cookie);
