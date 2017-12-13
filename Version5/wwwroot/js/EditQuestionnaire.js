@@ -15,16 +15,47 @@ $(document).ready(function () {
             var changes = document.getElementById("tableReport").rows[i + 1].cells[2].children[0].value;
             var modifier = document.getElementById("tableReport").rows[i + 1].cells[1].innerHTML;
             var Questionaireid = getQuestionaireID("report");
-            alert(changes);
-            alert(modifier);
-            alert(Questionaireid);
             if (changes != "") {
                 var currentquestionid = parseInt(reportQuestionids[i]);
                 var dataToSend = {
                     fldQuestionsId: currentquestionid,
                     fldQuestion: changes,
                     fldModifier: modifier,
-                    fldQuestionnaireId:Questionaireid
+                    fldQuestionnaireId: Questionaireid
+                }
+                $.ajax({
+                    url: 'http://' + hostname + '/api/questions/' + currentquestionid,
+                    method: 'PUT',
+                    contentType: "application/json",
+                    dataType: 'json',
+                    async: false,
+                    data: JSON.stringify(dataToSend),
+                    success: function () {
+                        alert("successfully Updated Question");
+
+                    },
+                    error: function () {
+                        alert("couldn't update table");
+                    }
+                })
+            }
+
+        }
+    })
+    $("#UpdateInterviewQuestions").click(function () {
+        var x = document.getElementById("tableInterview").rows.length - 1;
+
+        for (var i = 0; i < x; i++) {
+            var changes = document.getElementById("tableInterview").rows[i + 1].cells[2].children[0].value;
+            var modifier = document.getElementById("tableInterview").rows[i + 1].cells[1].innerHTML;
+            var Questionaireid = getQuestionaireID("interview");
+            if (changes != "") {
+                var currentquestionid = parseInt(interviewQuestionids[i]);
+                var dataToSend = {
+                    fldQuestionsId: currentquestionid,
+                    fldQuestion: changes,
+                    fldModifier: modifier,
+                    fldQuestionnaireId: Questionaireid
                 }
                 $.ajax({
                     url: 'http://' + hostname + '/api/questions/' + currentquestionid,
@@ -169,13 +200,47 @@ $(document).ready(function () {
 
             var cell4 = row.insertCell(3)
             //TODO
-            cell4.innerHTML = '<button type="button" class="btn btn-danger" onclick="todofunction">Delete Question</button>';
+            cell4.innerHTML = '<button type="button" class="btn btn-danger" onclick="deleteQuestion(this)">Delete Question</button>';
 
         }
 
     }
 });
-
+function deleteQuestion(button) {
+    alert(button.parentNode.parentNode.parentNode.parentNode.id)
+    var indexToDelete = button.parentNode.parentNode.rowIndex - 1
+    if (button.parentNode.parentNode.parentNode.parentNode.id == "tableReport") {
+        var reportIndex = reportQuestionids[indexToDelete];
+        $.ajax({
+            url: 'http://' + hostname + '/api/Questions/' + reportIndex,
+            type: "DELETE",
+            contentType: "application/json",
+            dataType: "json",
+            success: function (data) {
+                location.reload(true);
+            },
+            error: function () {
+                alert("couldn't Delete Question");
+            }
+        });
+    } else {
+        alert("inInterview");
+        var interviewIndex = interviewQuestionids[indexToDelete];
+        $.ajax({
+            url: 'http://' + hostname + '/api/Questions/' + interviewIndex,
+            type: "DELETE",
+            contentType: "application/json",
+            dataType: "json",
+            success: function (data) {
+                location.reload(true);
+            },
+            error: function () {
+                alert("couldn't Delete Question");
+            }
+        });
+    }
+    
+}
 
 
 

@@ -1,8 +1,9 @@
-﻿
+﻿//window.onblur = function () { window.onfocus = function () { location.reload(true) } };
+
 $(document).ready(function () {
     var hostname = document.location.host;
 
-
+    //Get projects url for view report and get every teams score
     $.ajax({
         url: 'http://' + hostname + '/api/GetProjectURL',
         method: 'GET',
@@ -44,7 +45,7 @@ $(document).ready(function () {
 
     //GetLinkFromTeamName("Davids team");
     // Find a <table> element with id="myTable":
-
+    
     function GetLinkFromTeamName(teamname) {
 
         $.ajax({
