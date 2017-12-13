@@ -34,7 +34,7 @@ namespace Version5.Controllers
                 {
                     TblTeam data = new TblTeam
                     {
-                        FldUsername = item
+                        FldUsername = item,
                     };
                     toReturn.Add(data);
 

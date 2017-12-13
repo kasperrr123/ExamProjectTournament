@@ -24,69 +24,20 @@ $(document).ready(function () {
         var username = selectedRow.fldUsername;
         var rank = selectedRow.fldRank;
         alert(rank);
-        if (rank == 355) {
-            // Delete login.
-            $.ajax({
-                url: 'http://' + hostname + '/api/logins/' + username,
-                type: "DELETE",
-                contentType: "application/json",
-                dataType: "json",
-                success: function (data) {
-                    alert("Login deleted")
-                },
-                error: function (data) {
-                    alert("Login deleted failed");
-                }
-            });
-        } else {
-            // The login has a foreing key in tblTeam, so we have to delete both records.
-            // We need the primarykey of tblTeam, so we wind that with the help of fldUserName, which we get from
-            // the table.
-            $.ajax({
-                url: 'http://' + hostname + '/api/teams',
-                type: "GET",
-                contentType: "application/json",
-                dataType: "json"
-            }).then(function (dataFromServer) {
-                // now we have the objects from the table.
-                var json = JSON.stringify(dataFromServer);
-                var collectionOfTeams = JSON.parse(json);
-                // Goes through a forloop to find the exact team which have the same username. That way we can find
-                // the correct fldTeamName we want to delete.
-                for (var i = 0; i < collectionOfTeams.length; i++) {
-                    if (username === collectionOfTeams[i].fldUsername) {
-                        // Deleting the team.
-                        $.ajax({
-                            url: 'http://' + hostname + '/api/teams/' + collectionOfTeams[i].fldTeamName,
-                            type: "DELETE",
-                            contentType: "application/json",
-                            dataType: "json",
-                            success: function () {
-                                alert("Team deleted")
-                            }
-                        }).then(function () {
-                            // Deleting login now.
-                            $.ajax({
-                                url: 'http://' + hostname + '/api/logins/' + username,
-                                type: "DELETE",
-                                contentType: "application/json",
-                                dataType: "json",
-                                success: function (data) {
-                                    alert("Login deleted")
-                                },
-                            });
-                        });
 
-                    }
-
-                    break;
-
-
-                }
-
-            });
-
-        }
+        // Delete login.
+        $.ajax({
+            url: 'http://' + hostname + '/api/logins/' + username,
+            type: "DELETE",
+            contentType: "application/json",
+            dataType: "json",
+            success: function (data) {
+                alert("Login deleted")
+            },
+            error: function (data) {
+                alert("Login deleted failed");
+            }
+        });
 
     });
 
