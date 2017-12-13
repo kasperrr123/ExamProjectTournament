@@ -16,8 +16,14 @@
     /*color: #34c5ff;*/
     color: #ffffff;
     font-family: Arial, Times, serif;
-
 }
+
+
+#ErrorLoginLabel{
+    text-align: center;
+    color:red;
+}
+
 
 #logoutbutton {
     margin-top: 0.75%;
@@ -26,7 +32,7 @@
 
 #logindropdown {
     margin-top: 0.75%;
-    background-color:gray;
+    background-color: gray;
 }
 
 .navbar-toggle {
