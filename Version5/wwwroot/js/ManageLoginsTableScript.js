@@ -2,10 +2,10 @@
 var selectedRow;
 
 $(document).ready(function () {
-    
+
     // Double clicking a row inside the manage table. Opening user settings inside modal.
     $("#manageLoginsTable").on('click-row.bs.table', function (row, element, field) {
-        var row = JSON.stringify(element);  
+        var row = JSON.stringify(element);
         selectedRow = JSON.parse(row);
         $("#myModal").modal();
 
@@ -23,6 +23,7 @@ $(document).ready(function () {
         // Getting information from the table.
         var username = selectedRow.fldUsername;
         var rank = selectedRow.fldRank;
+        alert(rank);
         if (rank == 355) {
             // Delete login.
             $.ajax({
@@ -33,6 +34,9 @@ $(document).ready(function () {
                 success: function (data) {
                     alert("Login deleted")
                 },
+                error: function (data) {
+                    alert("Login deleted failed");
+                }
             });
         } else {
             // The login has a foreing key in tblTeam, so we have to delete both records.
