@@ -70,7 +70,7 @@ namespace Version5.Controllers
                     }
                     else
                     {
-                        return new { Status = 200, msg = "Password isn't correct" };
+                        return new { Status = 200, msg = "Password incorrect" };
                     }
                 }
 

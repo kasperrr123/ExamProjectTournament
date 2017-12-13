@@ -1,26 +1,40 @@
 ﻿body {
 }
 
-.alignHorizontal{
+.alignHorizontal {
     margin: 2%;
 }
 
-.margin-bottom{
+.margin-bottom {
     margin-bottom: 2%;
 }
 
-#tableReport {
-    width: 100%;
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    border: 1px solid #bbb;
 }
 
-#tableInterview {
-    width:100%;
+.modal-body {
+    max-height: 800px;
 }
+
+
+td, th {
+    border-top: 1px solid #ddd;
+    padding: 4px 8px;
+}
+
+#Question{
+    height:100px;
+} 
 
 
 .button_save {
     margin-right: 7%;
 }
+
 textarea {
-    resize: none
+    resize: none;
+
 }

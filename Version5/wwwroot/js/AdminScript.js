@@ -28,6 +28,9 @@
                 });
             });
         } else {
+
+            $("#TeamnameCol").attr("visible", "false");
+
             $.ajax({
                 url: 'http://' + hostname + '/api/logins/management/355',
                 type: "GET",

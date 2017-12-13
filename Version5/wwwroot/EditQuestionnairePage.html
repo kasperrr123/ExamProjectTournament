@@ -2,24 +2,12 @@
 <html>
 <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=650">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/AlertBox.css" />
     <link rel="stylesheet" href="css/EditQuestionnaire.css" />
-
-
-    <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.11.1/bootstrap-table.min.css">
-
-    <!-- Latest compiled and minified JavaScript -->
-    <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.11.1/bootstrap-table.min.js"></script>
-
-    <!-- Latest compiled and minified Locales -->
-    <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.11.1/locale/bootstrap-table-zh-CN.min.js"></script>
-
-
     <script src="js/CreateNewQuestion.js?n=1"></script>
     <script src="js/EditQuestionnaire.js?n=1"></script>
     <title>Edit Questionnaire</title>
@@ -49,14 +37,13 @@
     </div>
     <!--Edit report table-->
     <div class="container-fluid">
-
-        <table class="bootstrap-table table table-responsive table-striped" id="tableReport">
+        <table class="table table-responsive table-striped" id="tableReport">
             <thead>
                 <tr>
-                    <th>Question</th>
-                    <th>Modifier</th>
-                    <th>Change</th>
-                    <th></th>
+                    <td class="col-xs-5">Question</td>
+                    <td class="col-xs-1">Modifier</td>
+                    <td class="col-xs-5">Change</td>
+                    <th class="col-xs-1"></th>
                 </tr>
             </thead>
         </table>
@@ -80,21 +67,18 @@
     </div>
     <!--Edit interview table-->
     <div class="container-fluid">
-        <div class="flex-md-row">
-            <div>
-                <table class="table table-responsive table-striped" id="tableInterview">
-                    <thead>
-                        <tr>
-                            <th>Question</th>
-                            <th>Modifier</th>
-                            <th>Change</th>
-                            <th></th>
-                        </tr>
-                    </thead>
-                </table>
-            </div>
-        </div>
+        <table class="table table-responsive table-striped" id="tableInterview">
+            <thead>
+                <tr>
+                    <td class="col-xs-5">Question</td>
+                    <td class="col-xs-1">Modifier</td>
+                    <td class="col-xs-5">Change</td>
+                    <th class="col-xs-1"></th>
+                </tr>
+            </thead>
+        </table>
     </div>
+
     <!--Buttons for interview edit-->
     <div class="row">
         <div class="col-md-12">
@@ -120,7 +104,7 @@
                 <div class="modal-body">
                     <div>
                         <label class="form-control-label">Question</label>
-                        <input id="Question" type="text" class="form-control" placeholder="Type in question">
+                        <textarea id="Question" class="form-control" placeholder="Type in question"></textarea>
                     </div>
                     <div>
                         <label class="form-control-label">Modifier</label>

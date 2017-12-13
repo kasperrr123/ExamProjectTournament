@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=650">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/EditQuestionnaire.css" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -11,28 +11,31 @@
     <title>Answer Questionnaire</title>
 </head>
 <body>
+    <!--Navbar-->
     <nav id="MainNavBar" class="navbar navbar-inverse">
         <div class="navbar-header">
             <h1 class="nav navbar-header alignHorizontal">Answer Questionnaire</h1>
         </div>
 
     </nav>
+    <!--Answer table-->
     <div class="container-fluid">
         <div class="flex-md-row">
             <div>
                 <table class="table table-responsive table-striped" id="table">
                     <thead>
                         <tr>
-                            <th>Question</th>
-                            <th>Modifier</th>
-                            <th>Answer</th>
+
+                            <td class="col-xs-10">Question</td>
+                            <td class="col-xs-1">Modifier</td>
+                            <td class="col-xs-1">Answer</td>
                         </tr>
                     </thead>
                 </table>
             </div>
         </div>
     </div>
-
+    <!--Save button-->
     <div class="row">
         <div class="col-md-12">
             <div class="well">
