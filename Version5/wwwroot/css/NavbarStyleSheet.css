@@ -29,6 +29,7 @@
     margin-top: 0.75%;
     /*background-color:gray;*/
 }
+loginbutton
 
 #logindropdown {
     margin-top: 0.75%;
@@ -52,4 +53,10 @@
     margin-top: 2%;
     width: 90%;
     margin-left: 6.2px;
+    background: #17AADF;
+    color: #fff;
+    cursor: pointer;
+}
+#loginbutton:hover {
+    background:#0094ff;
 }
