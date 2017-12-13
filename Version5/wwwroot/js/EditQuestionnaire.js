@@ -1,12 +1,13 @@
 ﻿var hostname = document.location.host;
 
 $(document).ready(function () {
+
     getQuestions();
     $("#dropdown").change(function () {
         getQuestions();
     });
 
-    $
+    
 
 
 
@@ -88,6 +89,10 @@ $(document).ready(function () {
 
         }
 
+    }
+
+    function showCreateNewQuestionModal() {
+        $("#CreateNewQuestionModal").modal();
     }
 });
 

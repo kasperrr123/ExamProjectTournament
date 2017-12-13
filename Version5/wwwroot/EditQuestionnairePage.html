@@ -8,16 +8,19 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
     <link rel="stylesheet" href="css/EditQuestionnaire.css" />
+    <script src="js/CreateNewQuestion.js?n=1"></script>
     <script src="js/EditQuestionnaire.js?n=1"></script>
     <title>Edit Questionnaire</title>
 </head>
 <body>
+    <!--Navbar-->
     <nav id="MainNavBar" class="navbar navbar-inverse">
         <div class="navbar-header">
             <h1 class="nav navbar-header alignHorizontal"><a>Edit questionnaire</a></h1>
         </div>
 
     </nav>
+    <!--Dropdown menu-->
     <div class="container-fluid margin-bottom">
         <div class="flex-md-row">
             <select id="dropdown" onchange="">
@@ -28,9 +31,11 @@
             </select>
         </div>
     </div>
+    <!--Report label-->
     <div class="container-fluid">
         <h3>Report</h3>
     </div>
+    <!--Edit report table-->
     <div class="container-fluid">
         <div class="flex-md-row">
             <div>
@@ -47,20 +52,23 @@
             </div>
         </div>
     </div>
+    <!--Buttons for report edit-->
     <div class="row">
         <div class="col-md-12">
             <div class="well">
                 <div class="text-right">
-                   <button type="button" id="createReportQuestionButton" class="btn btn-success button_save" >Create New Report Question</button>
+                    <button type="button" id="createReportQuestionButton" class="btn btn-success button_save">Create New Report Question</button>
                     <button type="button" class="btn btn-success button_save">Update Report Questions </button>
                 </div>
             </div>
 
         </div>
     </div>
+    <!--Interview label-->
     <div class="container-fluid">
         <h3>Interview</h3>
     </div>
+    <!--Edit interview table-->
     <div class="container-fluid">
         <div class="flex-md-row">
             <div>
@@ -77,6 +85,7 @@
             </div>
         </div>
     </div>
+    <!--Buttons for interview edit-->
     <div class="row">
         <div class="col-md-12">
             <div class="well">
@@ -85,10 +94,39 @@
                     <button type="button" id="UpdateInterviewQuestions" class="btn btn-success button_save">Update Interview Questions </button>
                 </div>
             </div>
-            
+
         </div>
     </div>
 
+    <!--Create new question modal-->
+    <div id="CreateNewQuestionModal" class="modal fade center" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title" id="modalTitle">Creating question</h4>
+                </div>
+                <div class="modal-body">
+                    <div>
+                        <label class="form-control-label">Question</label>
+                        <input id="Question" type="text" class="form-control" placeholder="Type in question">
+                    </div>
+                    <div>
+                        <label class="form-control-label">Modifier</label>
+                        <input id="Modifier" type="number" class="form-control" placeholder="What will the modifier be">
+                    </div>
+                    <div style="margin-top: 10px;">
+                        <button type="button" class="btn btn-success button_save" id="createQuestionBtn">Create question</button>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
 
 
 </body>
