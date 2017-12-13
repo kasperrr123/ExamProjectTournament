@@ -6,12 +6,13 @@ $(document).ready(function () {
         getQuestions();
     });
 
+    $
+
 
 
 
     function getQuestions() {
         var topic = $("#dropdown").val();
-
         var id, interviewID;
         switch (topic) {
             case 'Business & Service':
@@ -79,7 +80,11 @@ $(document).ready(function () {
             cell2.innerHTML = data[i].fldModifier;
 
             var cell3 = row.insertCell(2);
-            cell3.innerHTML = '<textarea rows="4" cols="50"/>';
+            cell3.innerHTML = '<textarea class="form-control" rows="4" cols="10" placeholder="Leave empty if there are no changes"/>';
+
+            var cell4 = row.insertCell(3)
+            //TODO
+            cell4.innerHTML = '<button type="button" class="btn btn-danger" onclick="todofunction">Delete Question</button>';
 
         }
 

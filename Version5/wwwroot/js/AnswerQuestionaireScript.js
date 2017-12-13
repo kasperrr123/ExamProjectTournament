@@ -11,6 +11,16 @@ function gup(name, url) {
     var results = regex.exec(url);
     return results == null ? null : results[1];
 }
+
+
+function addScoreFocus(field) {
+    if (field.value > -1 && field.value < 11 & field.value != "") {
+        field.style.backgroundColor = "rgba(0, 225, 0, .3)";
+    } else {
+        field.style.backgroundColor = "rgba(255, 0, 0, .3)";
+
+    }
+}
 $(document).ready(function () {
 
     teamname = decodeURI(teamname);
@@ -34,6 +44,8 @@ $(document).ready(function () {
         });
 
     }
+
+
 
 
     function UpdateTable(data, tablename) {
@@ -60,9 +72,11 @@ $(document).ready(function () {
             cell2.innerHTML = data[i].fldModifier;
 
             var cell3 = row.insertCell(2);
-            cell3.innerHTML = '<input type="text" onkeypress="return event.charCode >= 48 && event.charCode <= 57"></input>';
+            cell3.innerHTML = '<input type="text" id="score" onblur="addScoreFocus(this)" onkeypress="return event.charCode >= 48 && event.charCode <= 57"> </input>';
+
 
         }
+
 
     }
     $("#giveAnswer").click(function () {
@@ -70,13 +84,16 @@ $(document).ready(function () {
 
 
     });
+   
+
+
+
+
     function getJudgeLetter() {
-        var x = document.getElementById("table").rows.length;
+        var x = document.getElementById("table").rows.length - 1;
 
         var email = document.cookie.split("=")[0];
         var judgeletter;
-     
-        alert('http://' + hostname + '/api/GetQuestionsForJudge/' + email);
         $.ajax({
             url: 'http://' + hostname + '/api/GetQuestionsForJudge/' + email,
             method: 'GET',
@@ -84,9 +101,20 @@ $(document).ready(function () {
             dataType: 'json',
             success: function (data) {
                 judgeletter = data.fldJudgeLetter;
-                
+                var canRun = true;
                 for (var i = 0; i < x; i++) {
                     var score = document.getElementById("table").rows[i + 1].cells[2].children[0].value;
+                    if (score>-1&&score<11&&score!="") {
+
+                    } else {
+                        canRun = false;
+                    }
+                } if (canRun) {
+
+                for (var i = 0; i < x; i++) {
+                    var score = document.getElementById("table").rows[i + 1].cells[2].children[0].value;
+                   
+                   
                     var currentquestionid = parseInt(questionids[i]);
 
                     var dataToSend = {
@@ -95,21 +123,27 @@ $(document).ready(function () {
                         FldJudgeLetter: judgeletter,
                         FldPoint: score
                     }
-                    alert(JSON.stringify(data));
                     $.ajax({
                         url: 'http://' + hostname + '/api/answers',
                         method: 'POST',
                         contentType: "application/json",
-                        dataType:'json',
+                        dataType: 'json',
+                        async: false,
                         data: JSON.stringify(dataToSend),
                         success: function () {
-                           
+                            alert("successfully uploaded answer");
+
                         },
                         error: function () {
                             alert("couldn't update table");
                         }
                     })
+                    }
+                //window.close();
+                } else {
+                    alert("you have made a false input");
                 }
+                
             },
             error: function () {
                 alert("Error Getting JudgeLetter");

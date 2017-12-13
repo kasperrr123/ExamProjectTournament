@@ -13,3 +13,6 @@
 .button_save{
     margin-right: 7%;
 }
+textarea {
+    resize: none;
+}
