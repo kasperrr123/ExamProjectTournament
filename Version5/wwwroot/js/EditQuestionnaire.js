@@ -90,10 +90,6 @@ $(document).ready(function () {
         }
 
     }
-
-    function showCreateNewQuestionModal() {
-        $("#CreateNewQuestionModal").modal();
-    }
 });
 
 

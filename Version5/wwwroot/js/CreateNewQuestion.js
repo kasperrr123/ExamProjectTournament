@@ -11,7 +11,7 @@
         var data = {
             fldQuestion: $("#Question").val(),
             fldModifier: $("#Modifier").val(),
-            fldQuestionnaireID: $("#dropdown").val();
+            fldQuestionnaireID: $("#dropdown").val()
         };
         alert(JSON.stringify(data));
 
