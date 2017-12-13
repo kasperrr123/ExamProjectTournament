@@ -32,7 +32,6 @@
                 var b = JSON.parse(a);
                 switch (b.status) {
                     case 100:
-                        alert("You've been logged in: " + b.rank);
                         switch (b.rank) {
                             case "301":
                                 createCookie(loginObject.fldUsername, "301");
@@ -96,7 +95,7 @@
 function ErrorMessageLogin(message) {
     document.getElementById("ErrorLoginBox").innerHTML = message + '<span class="closebtn" onclick="CloseX(this)">&times;</span>'
 
-    $("#ErrorLoginBox").fadeTo(100, 0.1).fadeTo(200, 1.0);
+    $("#ErrorLoginBox").fadeTo(100, 0.1).fadeTo(100, 1.0);
     $("#ErrorLoginBox").show();
 
     function CloseX(button) {
