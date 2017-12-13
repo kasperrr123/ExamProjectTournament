@@ -22,9 +22,6 @@ $(document).ready(function () {
     $("#YesBtn").click(function () {
         // Getting information from the table.
         var username = selectedRow.fldUsername;
-        var rank = selectedRow.fldRank;
-        alert(rank);
-
         // Delete login.
         $.ajax({
             url: 'http://' + hostname + '/api/logins/' + username,
