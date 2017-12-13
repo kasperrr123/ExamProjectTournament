@@ -8,6 +8,18 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/AlertBox.css" />
     <link rel="stylesheet" href="css/EditQuestionnaire.css" />
+
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.11.1/bootstrap-table.min.css">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.11.1/bootstrap-table.min.js"></script>
+
+    <!-- Latest compiled and minified Locales -->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.11.1/locale/bootstrap-table-zh-CN.min.js"></script>
+
+
     <script src="js/CreateNewQuestion.js?n=1"></script>
     <script src="js/EditQuestionnaire.js?n=1"></script>
     <title>Edit Questionnaire</title>
@@ -37,21 +49,19 @@
     </div>
     <!--Edit report table-->
     <div class="container-fluid">
-        <div class="col-xs-12">
-      
-                <table class="table table-responsive table-striped" id="tableReport">
-                    <thead>
-                        <tr>
-                            <th>Question</th>
-                            <th>Modifier</th>
-                            <th>Change</th>
-                            <th></th>
-                        </tr>
-                    </thead>
-                </table>
-       
-        </div>
+
+        <table class="bootstrap-table table table-responsive table-striped" id="tableReport">
+            <thead>
+                <tr>
+                    <th>Question</th>
+                    <th>Modifier</th>
+                    <th>Change</th>
+                    <th></th>
+                </tr>
+            </thead>
+        </table>
     </div>
+
     <!--Buttons for report edit-->
     <div class="row">
         <div class="col-md-12">
@@ -100,7 +110,7 @@
 
     <!--Create new question modal-->
     <div id="CreateNewQuestionModal" class="modal fade center" role="dialog">
-        <div class="modal-dialog">
+        <div class="modal-dialog modal-lg">
             <!-- Modal content-->
             <div class="modal-content">
                 <div class="modal-header">

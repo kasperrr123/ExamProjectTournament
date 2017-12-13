@@ -9,10 +9,18 @@
     margin-bottom: 2%;
 }
 
+#tableReport {
+    width: 100%;
+}
 
-.button_save{
+#tableInterview {
+    width:100%;
+}
+
+
+.button_save {
     margin-right: 7%;
 }
 textarea {
-    resize: none;
+    resize: none
 }
