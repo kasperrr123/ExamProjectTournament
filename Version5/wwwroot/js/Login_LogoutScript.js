@@ -51,10 +51,10 @@
                         }
                         break;
                     case 200:
-                        alert(b.msg);
+                        ErrorMessageLogin(b.msg);
                         break;
                     case 300:
-                        alert(b.msg);
+                        ErrorMessageLogin(b.msg);
                         break;
                     default:
                         alert("Unknown error");
@@ -62,7 +62,7 @@
                 }
             });
         } else {
-            alert("You have write your username (email address) and your password to login");
+            ErrorMessageLogin("Email & Password required");
         }
     });
 
@@ -92,6 +92,18 @@
         document.location.pathname = "index.html";
     });
 });
+
+function ErrorMessageLogin(message) {
+    document.getElementById("ErrorLoginBox").innerHTML = message + '<span class="closebtn" onclick="CloseX(this)">&times;</span>'
+
+    $("#ErrorLoginBox").fadeTo(100, 0.1).fadeTo(200, 1.0);
+    $("#ErrorLoginBox").show();
+
+    function CloseX(button) {
+        button.parentElement.style.display = 'none';
+    }
+}
+
 
 function isCookieValid() {
     console.log(document.cookie);
